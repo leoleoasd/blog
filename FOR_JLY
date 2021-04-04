@@ -14,4 +14,3 @@ while True:
     t.string("%02d:%02d:%02d" % ((a[3] + 8) % 24, a[4], a[5]), 2, 2, config.color)
     t.write()
     time.sleep_ms(ltime + 1000 - time.ticks_ms())
-

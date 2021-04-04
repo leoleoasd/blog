@@ -85,8 +85,7 @@
 
   <link rel="stylesheet" href="//unpkg.com/heti/umd/heti.min.css">
   <script src="//unpkg.com/heti/umd/heti-addon.min.js"></script>
-<link rel="stylesheet" href="/css/prism-hopscotch.css" type="text/css">
-<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"><style>mjx-container[jax="SVG"] {
+<style>mjx-container[jax="SVG"] {
   direction: ltr;
 }
 
@@ -203,7 +202,8 @@ mjx-container[display="true"] {
 mjx-container[display="true"] + br {
   display: none;
 }
-</style></head>
+</style><link rel="stylesheet" href="/css/prism-hopscotch.css" type="text/css">
+<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"></head>
 
 <body itemscope itemtype="http://schema.org/WebPage">
   <div class="container use-motion">
@@ -459,26 +459,26 @@ mjx-container[display="true"] + br {
 using namespace std;
 int main(){
     int n,a,b,c;
-    cin&gt;&gt;n&gt;&gt;a&gt;&gt;b;
+    cin>>n>>a>>b;
     while(n--){
-        cin&gt;&gt;c;
+        cin>>c;
         int x = 0;
         int y = 0;
         c -= a;
-        for(x = c / a; x &gt;= 0; x --){
+        for(x = c / a; x >= 0; x --){
             if ((c - a * x) % b == 0){
                 y = (c - a * x) / b;
                 break;
             }
         }
         if (x == -1) {
-            cout&lt;&lt;"ARE YOU KIDDING ME?"&lt;&lt;endl;
+            cout<<"ARE YOU KIDDING ME?"<<endl;
         } else {
-            cout&lt;&lt;x&lt;&lt;" "&lt;&lt;y&lt;&lt;endl;
+            cout<<x<<" "<<y<<endl;
         }
     }
     return 0;
-}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></iostream></code></pre>
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
       
     </div>
@@ -792,33 +792,33 @@ int score(){ // 计算分数
     int m_c = 0;
     int last = -1;
     int last_count = 0;
-    for(int i = 0; i &lt; n; ++ i){
+    for(int i = 0; i < n; ++ i){
         last = -1;
         last_count = 0;
-        for(int j = 0; j &lt; m; ++ j){
+        for(int j = 0; j < m; ++ j){
             if (map[i][j] == last){
                 last_count ++;
             } else {
                 last_count = 1;
                 last = map[i][j];
             }
-            m_c = m_c &gt; last_count ? m_c : last_count;
+            m_c = m_c > last_count ? m_c : last_count;
         }
     }
-    for(int j = 0; j &lt; m; ++ j){
+    for(int j = 0; j < m; ++ j){
         last = -1;
         last_count = 0;
-        for(int i = 0; i &lt; n; ++ i){
+        for(int i = 0; i < n; ++ i){
             if (map[i][j] == last){
                 last_count ++;
             } else {
                 last_count = 1;
                 last = map[i][j];
             }
-            m_c = m_c &gt; last_count ? m_c : last_count;
+            m_c = m_c > last_count ? m_c : last_count;
         }
     }
-    return m_c &gt;= 3 ? m_c : 0;
+    return m_c >= 3 ? m_c : 0;
 }
 void swap(int x1, int y1, int x2, int y2){ // 交换
     int t = map[x1][y1];
@@ -832,38 +832,38 @@ int main(){
     cin.tie(nullptr);
     int m_s = 0;
     int c_s;
-    while(cin&gt;&gt;n&gt;&gt;m, n!=0 &amp;&amp; m!=0){
+    while(cin>>n>>m, n!=0 && m!=0){
         m_s = 0;
-        for(int i = 0; i &lt; n; ++ i){
-            for(int j = 0; j &lt; m; ++ j){
-                cin&gt;&gt;c;
+        for(int i = 0; i < n; ++ i){
+            for(int j = 0; j < m; ++ j){
+                cin>>c;
                 map[i][j] = c == '_' ? _ : O;
             }
         }
-        for(int i = 0; i &lt; n; ++ i){
-            for(int j = 0; j &lt; m; ++ j){
-                if(i+1 &lt; n){
+        for(int i = 0; i < n; ++ i){
+            for(int j = 0; j < m; ++ j){
+                if(i+1 < n){
                     swap(i,j,i+1,j);
                     c_s = score();
-                    if(c_s &gt; m_s){
+                    if(c_s > m_s){
                         m_s = c_s;
                     }
                     swap(i,j,i+1,j);
                 }
-                if(j+1 &lt; m){
+                if(j+1 < m){
                     swap(i,j,i,j+1);
                     c_s = score();
-                    if(c_s &gt; m_s){
+                    if(c_s > m_s){
                         m_s = c_s;
                     }
                     swap(i,j,i,j+1);
                 }
             }
         }
-        cout&lt;&lt;m_s&lt;&lt;endl;
+        cout<<m_s<<endl;
     }
     return 0;
-}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></iostream></code></pre>
+}<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
 
       
     </div>
