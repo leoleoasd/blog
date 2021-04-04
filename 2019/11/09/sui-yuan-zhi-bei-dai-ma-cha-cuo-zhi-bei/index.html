@@ -1,0 +1,743 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/medias/leo@8x-1.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/medias/leo@8x.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/medias/leo@4x.png">
+  <link rel="mask-icon" href="/medias/leo@8x-1.png" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"leoleoasd.me","root":"/","scheme":"Muse","version":"7.7.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="代码差错指北如题, 这是随缘更新的指北. 不严谨的统计显示, 程序员的工作时间中, 10%用于构思和写代码, 30%用于debug, 60%用于纠结该给变量起什么名字. 那么问题来了, 抢答!! PHP天下第一!!, 如何DEBUG才是高效的DEBUG呢? LOG调试法打LOG无论是在学习中还是在工作中都是极其重要的DEBUG方式. 1 那么就有人问了, 啥是打LOG?  LOG能帮我们: 对程序">
+<meta property="og:type" content="article">
+<meta property="og:title" content="随缘指北 代码查错指北">
+<meta property="og:url" content="http://leoleoasd.me/2019/11/09/sui-yuan-zhi-bei-dai-ma-cha-cuo-zhi-bei/index.html">
+<meta property="og:site_name" content="Leo">
+<meta property="og:description" content="代码差错指北如题, 这是随缘更新的指北. 不严谨的统计显示, 程序员的工作时间中, 10%用于构思和写代码, 30%用于debug, 60%用于纠结该给变量起什么名字. 那么问题来了, 抢答!! PHP天下第一!!, 如何DEBUG才是高效的DEBUG呢? LOG调试法打LOG无论是在学习中还是在工作中都是极其重要的DEBUG方式. 1 那么就有人问了, 啥是打LOG?  LOG能帮我们: 对程序">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2019-11-09T11:11:39.000Z">
+<meta property="article:modified_time" content="2021-04-01T11:25:56.937Z">
+<meta property="article:author" content="Leo">
+<meta property="article:tag" content="公众号同步推送">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://leoleoasd.me/2019/11/09/sui-yuan-zhi-bei-dai-ma-cha-cuo-zhi-bei/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true
+  };
+</script>
+
+  <title>随缘指北 代码查错指北 | Leo</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-141894777-1"></script>
+    <script pjax>
+      if (CONFIG.hostname === location.hostname) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-141894777-1');
+      }
+    </script>
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+  <link rel="stylesheet" href="//unpkg.com/heti/umd/heti.min.css">
+  <script src="//unpkg.com/heti/umd/heti-addon.min.js"></script>
+<link rel="stylesheet" href="/css/prism-hopscotch.css" type="text/css">
+<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"><style>mjx-container[jax="SVG"] {
+  direction: ltr;
+}
+
+mjx-container[jax="SVG"] > svg {
+  overflow: visible;
+}
+
+mjx-container[jax="SVG"] > svg a {
+  fill: blue;
+  stroke: blue;
+}
+
+mjx-container[jax="SVG"][display="true"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+
+mjx-container[jax="SVG"][justify="left"] {
+  text-align: left;
+}
+
+mjx-container[jax="SVG"][justify="right"] {
+  text-align: right;
+}
+
+g[data-mml-node="merror"] > g {
+  fill: red;
+  stroke: red;
+}
+
+g[data-mml-node="merror"] > rect[data-background] {
+  fill: yellow;
+  stroke: none;
+}
+
+g[data-mml-node="mtable"] > line[data-line] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > rect[data-frame] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > .mjx-dashed {
+  stroke-dasharray: 140;
+}
+
+g[data-mml-node="mtable"] > .mjx-dotted {
+  stroke-linecap: round;
+  stroke-dasharray: 0,140;
+}
+
+g[data-mml-node="mtable"] > svg {
+  overflow: visible;
+}
+
+[jax="SVG"] mjx-tool {
+  display: inline-block;
+  position: relative;
+  width: 0;
+  height: 0;
+}
+
+[jax="SVG"] mjx-tool > mjx-tip {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+mjx-tool > mjx-tip {
+  display: inline-block;
+  padding: .2em;
+  border: 1px solid #888;
+  font-size: 70%;
+  background-color: #F8F8F8;
+  color: black;
+  box-shadow: 2px 2px 5px #AAAAAA;
+}
+
+g[data-mml-node="maction"][data-toggle] {
+  cursor: pointer;
+}
+
+mjx-status {
+  display: block;
+  position: fixed;
+  left: 1em;
+  bottom: 1em;
+  min-width: 25%;
+  padding: .2em .4em;
+  border: 1px solid #888;
+  font-size: 90%;
+  background-color: #F8F8F8;
+  color: black;
+}
+
+foreignObject[data-mjx-xml] {
+  font-family: initial;
+  line-height: normal;
+  overflow: visible;
+}
+
+.MathJax path {
+  stroke-width: 3;
+}
+
+mjx-container[display="true"] {
+  overflow: auto hidden;
+}
+
+mjx-container[display="true"] + br {
+  display: none;
+}
+</style></head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Leo</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">Leo's cottage.</p>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://leoleoasd.me/2019/11/09/sui-yuan-zhi-bei-dai-ma-cha-cuo-zhi-bei/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/medias/leo@8x.png">
+      <meta itemprop="name" content="Leo">
+      <meta itemprop="description" content="Yet another blog">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Leo">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          随缘指北 代码查错指北
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2019-11-09 19:11:39" itemprop="dateCreated datePublished" datetime="2019-11-09T19:11:39+08:00">2019-11-09</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-04-01 19:25:56" itemprop="dateModified" datetime="2021-04-01T19:25:56+08:00">2021-04-01</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body heti" itemprop="articleBody">
+
+      
+        <h1 id="代码差错指北"><a href="#代码差错指北" class="headerlink" title="代码差错指北"></a>代码差错指北</h1><p>如题, 这是随缘更新的指北.</p>
+<p>不严谨的统计显示, 程序员的工作时间中, 10%用于构思和写代码, 30%用于debug, 60%用于纠结该给变量起什么名字.</p>
+<p>那么问题来了, <del>抢答!! PHP天下第一!!</del>, 如何DEBUG才是高效的DEBUG呢?</p>
+<h1 id="LOG调试法"><a href="#LOG调试法" class="headerlink" title="LOG调试法"></a>LOG调试法</h1><p>打LOG无论是在学习中还是在工作中都是极其重要的DEBUG方式. <a href="%E2%9D%84%EF%B8%8F.%E2%9D%84%EF%B8%8F%E5%92%8C%E6%88%91%E7%9A%84%E5%BE%AE%E4%BF%A1%E8%81%8A%E5%A4%A9%E8%AE%B0%E5%BD%95%5BOL%5D.%E5%BE%AE%E4%BF%A1,2019">1</a> 那么就有人问了, 啥是打LOG?</p>
+<blockquote>
+<p>LOG能帮我们:</p>
+<p>对程序运行情况的记录和监控；</p>
+<p>了解程序的运行状态</p>
+</blockquote>
+<p>总而言之, LOG就是程序运行时输出的帮助我们辨别程序运行状态的输出.</p>
+<h2 id="通过LOG看变量的值"><a href="#通过LOG看变量的值" class="headerlink" title="通过LOG看变量的值"></a>通过LOG看变量的值</h2><p>这点很显然, 程序执行到一半输出变量的值就能知道变量的值是多少. <del>废话</del> 需要注意的是, 不仅仅能打印变量的值, 还能打印表达式的值.</p>
+<p>举个例子: 优秀的X同学在做某道题的时候写出了以下的代码</p>
+<pre class="line-numbers language-cpp"><code class="language-cpp"><span class="token keyword">long</span> a<span class="token punctuation">;</span>
+<span class="token function">scanf</span><span class="token punctuation">(</span><span class="token string">"%d"</span><span class="token punctuation">,</span><span class="token operator">&amp;</span>a<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 注意这里有一个错误: 应该是%ld</span>
+
+<span class="token keyword">if</span><span class="token punctuation">(</span>a<span class="token operator">==</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    执行某些代码
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>他输入了-1之后,发现本应执行的if语句内代码并没有被执行. 于是他就在第三行插入了 <code>printf(&quot;%d&quot;,a==-1);</code>, 发现输出的值是0, 意味着a并不等于-1. 意识到 <code>a!=-1</code> 之后, 优秀的X同学就意识到了scanf处出现了错误.</p>
+<h2 id="通过LOG判断程序执行的位置"><a href="#通过LOG判断程序执行的位置" class="headerlink" title="通过LOG判断程序执行的位置"></a>通过LOG判断程序执行的位置</h2><p>看到上面的例子后, 各位可能有个疑惑: “X同学是怎么知道程序没有执行if语句内的内容呢?”</p>
+<p>(做手势: 看看本节标题) 你是不是心中浮现了一个玄妙的想法: 只要在if语句内输出点东西就好了啊! 是不是特别神奇! (夸张脸)</p>
+<p>说时迟, 那时快, 只见X同学飞快的敲下了以下代码</p>
+<pre class="line-numbers language-cpp"><code class="language-cpp"><span class="token keyword">long</span> a<span class="token punctuation">;</span>
+<span class="token function">scanf</span><span class="token punctuation">(</span><span class="token string">"%d"</span><span class="token punctuation">,</span><span class="token operator">&amp;</span>a<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 注意这里有一个错误: 应该是%ld</span>
+
+<span class="token keyword">if</span><span class="token punctuation">(</span>a<span class="token operator">==</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"这个东西应该输出的啊???"</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">// 当然并没有输出</span>
+    执行某些代码
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>当他按下了神圣的<code>F11</code>键之后, “当场他就懵了”, 陷入了沉思.</p>
+<h2 id="通过LOG查看递归调用的函数"><a href="#通过LOG查看递归调用的函数" class="headerlink" title="通过LOG查看递归调用的函数"></a>通过LOG查看递归调用的函数</h2><p>这点可能课内还没有学到, 可以等讲完课后回来复习 (观众留存度++)</p>
+<p>对于一个递归函数, 比如汉诺塔:</p>
+<pre class="line-numbers language-cpp"><code class="language-cpp"><span class="token keyword">void</span> <span class="token function">hanoi</span><span class="token punctuation">(</span><span class="token keyword">int</span> n<span class="token punctuation">,</span> <span class="token keyword">char</span> from<span class="token punctuation">,</span> <span class="token keyword">char</span> via<span class="token punctuation">,</span> <span class="token keyword">char</span> to<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"将要从%c通过借助%c移动%d个盘子到%c\n"</span><span class="token punctuation">,</span>from<span class="token punctuation">,</span>via<span class="token punctuation">,</span>n<span class="token punctuation">,</span>to<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>n <span class="token operator">==</span> <span class="token number">1</span><span class="token punctuation">)</span>
+        <span class="token function">move</span><span class="token punctuation">(</span>from<span class="token punctuation">,</span> to<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">else</span> <span class="token punctuation">{</span>
+        <span class="token function">hanoi</span><span class="token punctuation">(</span>n <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">,</span> from<span class="token punctuation">,</span> to<span class="token punctuation">,</span> via<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token function">move</span><span class="token punctuation">(</span>from<span class="token punctuation">,</span> to<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token function">hanoi</span><span class="token punctuation">(</span>n <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">,</span> via<span class="token punctuation">,</span> from<span class="token punctuation">,</span> to<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"已经从%c通过借助%c移动%d个盘子到%c\n"</span><span class="token punctuation">,</span>from<span class="token punctuation">,</span>via<span class="token punctuation">,</span>n<span class="token punctuation">,</span>to<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h1 id="室友调试法"><a href="#室友调试法" class="headerlink" title="室友调试法"></a>室友调试法</h1><p>把室友扥(den)过来, 完整的讲述你程序的思路给他听, (不用管室友是否真的在听), 一般讲到一半你就会意识到你哪儿错了</p>
+<h1 id="小黄鸭调试法"><a href="#小黄鸭调试法" class="headerlink" title="小黄鸭调试法"></a>小黄鸭调试法</h1><p>没有室友? 找一只小黄鸭放在桌子上给它讲述你的程序思路.</p>
+
+    </div>
+
+    
+    
+    
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>Leo
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://leoleoasd.me/2019/11/09/sui-yuan-zhi-bei-dai-ma-cha-cuo-zhi-bei/" title="随缘指北 代码查错指北">http://leoleoasd.me/2019/11/09/sui-yuan-zhi-bei-dai-ma-cha-cuo-zhi-bei/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+        
+
+  <div class="followme">
+    <p>欢迎关注我的其它发布渠道</p>
+
+    <div class="social-list">
+
+            <div class="social-item">
+              <a target="_blank" class="social-link" href="/medias/wechat_channel.jpg">
+                <span class="icon">
+                  <i class="fa fa-wechat"></i>
+                </span>
+
+                <span class="label">WeChat</span>
+              </a>
+            </div>
+    </div>
+  </div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E5%85%AC%E4%BC%97%E5%8F%B7%E5%90%8C%E6%AD%A5%E6%8E%A8%E9%80%81/" rel="tag"># 公众号同步推送</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2019/11/09/mei-ri-yi-ti-mei-wei-shu-zi-wen-ti/" rel="prev" title="每日一题 每位数字问题">
+      <i class="fa fa-chevron-left"></i> 每日一题 每位数字问题
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2019/11/09/dai-ma-de-ge-shi-yu-bian-liang-de-ming-ming/" rel="next" title="代码的格式与变量的命名">
+      代码的格式与变量的命名 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+    <div class="comments" id="gitalk-container"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#代码差错指北"><span class="nav-number">1.</span> <span class="nav-text">代码差错指北</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#LOG调试法"><span class="nav-number">2.</span> <span class="nav-text">LOG调试法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#通过LOG看变量的值"><span class="nav-number">2.1.</span> <span class="nav-text">通过LOG看变量的值</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#通过LOG判断程序执行的位置"><span class="nav-number">2.2.</span> <span class="nav-text">通过LOG判断程序执行的位置</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#通过LOG查看递归调用的函数"><span class="nav-number">2.3.</span> <span class="nav-text">通过LOG查看递归调用的函数</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#室友调试法"><span class="nav-number">3.</span> <span class="nav-text">室友调试法</span></a></li><li class="nav-item nav-level-1"><a class="nav-link" href="#小黄鸭调试法"><span class="nav-number">4.</span> <span class="nav-text">小黄鸭调试法</span></a></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Leo"
+      src="/medias/leo@8x.png">
+  <p class="site-author-name" itemprop="name">Leo</p>
+  <div class="site-description" itemprop="description">Yet another blog</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">39</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">32</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/leoleoasd" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;leoleoasd" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:i@leoleoasd.me" title="E-Mail → mailto:i@leoleoasd.me"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title">
+      <i class="fa fa-fw fa-link"></i>
+      友情链接
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://www.renjikai.com/" title="https:&#x2F;&#x2F;www.renjikai.com" rel="noopener" target="_blank">杰克部落</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.wevg.org/" title="https:&#x2F;&#x2F;www.wevg.org" rel="noopener" target="_blank">Vigorous Pro</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://blog.piggy.moe/" title="https:&#x2F;&#x2F;blog.piggy.moe" rel="noopener" target="_blank">Piggy</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://blog.valderfield.com/" title="https:&#x2F;&#x2F;blog.valderfield.com&#x2F;" rel="noopener" target="_blank">Colin</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://blog.skk.moe/" title="https:&#x2F;&#x2F;blog.skk.moe&#x2F;" rel="noopener" target="_blank">苏卡卡的有底洞</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://qaq.cat/" title="https:&#x2F;&#x2F;qaq.cat&#x2F;" rel="noopener" target="_blank">Balthild’s Blog</a>
+        </li>
+    </ul>
+  </div>
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Leo</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v4.2.1
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.7.1
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/pjax/pjax.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+  <script>
+var pjax = new Pjax({
+  selectors: [
+    'head title',
+    '#page-configurations',
+    '.content-wrap',
+    '.post-toc-wrap',
+    '#pjax'
+  ],
+  switches: {
+    '.post-toc-wrap': Pjax.switches.innerHTML
+  },
+  analytics: false,
+  cacheBust: false,
+  scrollTo : !CONFIG.bookmark.enable
+});
+
+window.addEventListener('pjax:success', () => {
+  document.querySelectorAll('script[pjax], script#page-configurations, #pjax script').forEach(element => {
+    var code = element.text || element.textContent || element.innerHTML || '';
+    var parent = element.parentNode;
+    parent.removeChild(element);
+    var script = document.createElement('script');
+    if (element.id) {
+      script.id = element.id;
+    }
+    if (element.className) {
+      script.className = element.className;
+    }
+    if (element.type) {
+      script.type = element.type;
+    }
+    if (element.src) {
+      script.src = element.src;
+      // Force synchronous loading of peripheral JS.
+      script.async = false;
+    }
+    if (element.getAttribute('pjax') !== null) {
+      script.setAttribute('pjax', '');
+    }
+    if (code !== '') {
+      script.appendChild(document.createTextNode(code));
+    }
+    parent.appendChild(script);
+  });
+  NexT.boot.refresh();
+  // Define Motion Sequence & Bootstrap Motion.
+  if (CONFIG.motion.enable) {
+    NexT.motion.integrator
+      .init()
+      .add(NexT.motion.middleWares.subMenu)
+      .add(NexT.motion.middleWares.postList)
+      .bootstrap();
+  }
+  NexT.utils.updateSidebarPosition();
+});
+</script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div id="pjax">
+  
+
+  
+
+
+  <script>
+    const heti = new Heti('.heti');
+    heti.autoSpacing(); // 自动进行中西文混排美化和标点挤压
+  </script>
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
+
+<script>
+NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
+    var gitalk = new Gitalk({
+      clientID    : '88c392c2c9081f351ae0',
+      clientSecret: '40c7d846bf7e66487a0fc35a4176a522bb723100',
+      repo        : 'blog',
+      owner       : 'leoleoasd',
+      admin       : ['leoleoasd'],
+      id          : '841d063b7672627ddc34f0f2f110f3bf',
+        language: 'zh-CN',
+      distractionFreeMode: true
+    });
+    gitalk.render('gitalk-container');
+  }, window.Gitalk);
+});
+</script>
+
+    </div>
+</body>
+</html>

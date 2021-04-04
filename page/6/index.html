@@ -1,0 +1,1189 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/medias/leo@8x-1.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/medias/leo@8x.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/medias/leo@4x.png">
+  <link rel="mask-icon" href="/medias/leo@8x-1.png" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"leoleoasd.me","root":"/","scheme":"Muse","version":"7.7.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="Yet another blog">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Leo">
+<meta property="og:url" content="http://leoleoasd.me/page/6/index.html">
+<meta property="og:site_name" content="Leo">
+<meta property="og:description" content="Yet another blog">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:author" content="Leo">
+<meta property="article:tag" content="c++ python machine_learning php golang">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://leoleoasd.me/page/6/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: true,
+    isPost: false
+  };
+</script>
+
+  <title>Leo</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-141894777-1"></script>
+    <script pjax>
+      if (CONFIG.hostname === location.hostname) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-141894777-1');
+      }
+    </script>
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+  <link rel="stylesheet" href="//unpkg.com/heti/umd/heti.min.css">
+  <script src="//unpkg.com/heti/umd/heti-addon.min.js"></script>
+<link rel="stylesheet" href="/css/prism-hopscotch.css" type="text/css">
+<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"><style>mjx-container[jax="SVG"] {
+  direction: ltr;
+}
+
+mjx-container[jax="SVG"] > svg {
+  overflow: visible;
+}
+
+mjx-container[jax="SVG"] > svg a {
+  fill: blue;
+  stroke: blue;
+}
+
+mjx-container[jax="SVG"][display="true"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+
+mjx-container[jax="SVG"][justify="left"] {
+  text-align: left;
+}
+
+mjx-container[jax="SVG"][justify="right"] {
+  text-align: right;
+}
+
+g[data-mml-node="merror"] > g {
+  fill: red;
+  stroke: red;
+}
+
+g[data-mml-node="merror"] > rect[data-background] {
+  fill: yellow;
+  stroke: none;
+}
+
+g[data-mml-node="mtable"] > line[data-line] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > rect[data-frame] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > .mjx-dashed {
+  stroke-dasharray: 140;
+}
+
+g[data-mml-node="mtable"] > .mjx-dotted {
+  stroke-linecap: round;
+  stroke-dasharray: 0,140;
+}
+
+g[data-mml-node="mtable"] > svg {
+  overflow: visible;
+}
+
+[jax="SVG"] mjx-tool {
+  display: inline-block;
+  position: relative;
+  width: 0;
+  height: 0;
+}
+
+[jax="SVG"] mjx-tool > mjx-tip {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+mjx-tool > mjx-tip {
+  display: inline-block;
+  padding: .2em;
+  border: 1px solid #888;
+  font-size: 70%;
+  background-color: #F8F8F8;
+  color: black;
+  box-shadow: 2px 2px 5px #AAAAAA;
+}
+
+g[data-mml-node="maction"][data-toggle] {
+  cursor: pointer;
+}
+
+mjx-status {
+  display: block;
+  position: fixed;
+  left: 1em;
+  bottom: 1em;
+  min-width: 25%;
+  padding: .2em .4em;
+  border: 1px solid #888;
+  font-size: 90%;
+  background-color: #F8F8F8;
+  color: black;
+}
+
+foreignObject[data-mjx-xml] {
+  font-family: initial;
+  line-height: normal;
+  overflow: visible;
+}
+
+.MathJax path {
+  stroke-width: 3;
+}
+
+mjx-container[display="true"] {
+  overflow: auto hidden;
+}
+
+mjx-container[display="true"] + br {
+  display: none;
+}
+</style></head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Leo</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">Leo's cottage.</p>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://leoleoasd.me/2019/11/09/dai-ma-de-ge-shi-yu-bian-liang-de-ming-ming/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/medias/leo@8x.png">
+      <meta itemprop="name" content="Leo">
+      <meta itemprop="description" content="Yet another blog">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Leo">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/11/09/dai-ma-de-ge-shi-yu-bian-liang-de-ming-ming/" class="post-title-link" itemprop="url">代码的格式与变量的命名</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2019-11-09 19:12:05" itemprop="dateCreated datePublished" datetime="2019-11-09T19:12:05+08:00">2019-11-09</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-04-01 19:25:56" itemprop="dateModified" datetime="2021-04-01T19:25:56+08:00">2021-04-01</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body heti" itemprop="articleBody">
+
+      
+          <h1 id="代码的格式与变量的命名"><a href="#代码的格式与变量的命名" class="headerlink" title="代码的格式与变量的命名"></a>代码的格式与变量的命名</h1><p><del>(今天没题了)</del></p>
+<p>正确的代码格式能够让你一眼就看清楚代码的架构, 同时, 当你拿着你的代码问别人的时候, <del>正确的代码格式会让别人更愿意回答你的问题</del>, 别人也能更轻松找到你代码中的错误.</p>
+<p>那么, 如何才是正确的代码格式呢?</p>
+<h3 id="大括号与缩进"><a href="#大括号与缩进" class="headerlink" title="大括号与缩进"></a>大括号与缩进</h3><p>大括号的风格有两种: 换行与不换行</p>
+<pre class="line-numbers language-cpp"><code class="language-cpp"><span class="token comment" spellcheck="true">// 换行</span>
+<span class="token keyword">for</span><span class="token punctuation">(</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">)</span>
+<span class="token punctuation">{</span>
+    blah<span class="token punctuation">;</span>
+    blah<span class="token punctuation">;</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span>foo<span class="token punctuation">)</span>
+    <span class="token punctuation">{</span>
+        blah<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">else</span>
+    <span class="token punctuation">{</span>
+        blah<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span>
+<span class="token comment" spellcheck="true">// 不换行</span>
+<span class="token keyword">for</span><span class="token punctuation">(</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">.</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    blah<span class="token punctuation">;</span>
+    blah<span class="token punctuation">;</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span>foo<span class="token punctuation">)</span><span class="token punctuation">{</span>
+        blah<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token keyword">else</span><span class="token punctuation">{</span>
+        blah<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p><del>个人更习惯后者</del>. 需要注意的就是 <strong>每遇到一个左大括号, 下一行一定要多缩进一格, 遇到一个右大括号, 下一行少缩进一格</strong>. 这样的结构能够让我们更清楚地看到多层if与for之间的层次结构关系.</p>
+<p><strong>在一般的IDE上</strong>, 选中多行代码按<code>Tab</code>键(Q左边的)即可给这几行代码的开头添加一个锁紧, 按<code>shitf-Tab</code>即可去掉一个缩进.</p>
+<p>同时, 大部分IDE的默认设置均是<strong>使用空格缩进, 每次缩进4个空格</strong>. 在某些IDE上(比如DevCPP)默认设置是使用制表符缩进, 这种设置的代码在粘贴到别的地方的时候可能出现格式错位, 建议修改为空格缩进.</p>
+<p>修改方式: Devcpp中依次打开<code>工具(Tools)-编译器选项(Compiler Options)</code>, 把左下角的<code>&quot;标签&quot;(tab)</code>选项卡中的<code>&quot;使用tab字符&quot;</code>去掉, 将<code>tab位置(Tab size)</code>修改为4.</p>
+<p>其他IDE的修改方式大同小异.</p>
+<h3 id="空格"><a href="#空格" class="headerlink" title="空格"></a>空格</h3><p>在<code>&lt; &gt; = != == ^ * + - &amp;&amp;</code>等运算符的<code>左右</code>加上空格,如:</p>
+<pre class="line-numbers language-cpp"><code class="language-cpp"><span class="token keyword">if</span><span class="token punctuation">(</span>a <span class="token operator">&lt;</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token keyword">if</span><span class="token punctuation">(</span>a <span class="token operator">!=</span> <span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+<span class="token keyword">if</span><span class="token punctuation">(</span>foo <span class="token operator">^</span> bar<span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token punctuation">;</span>
+<span class="token punctuation">}</span>
+foo <span class="token operator">=</span> bar<span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>在每一个逗号的后面添加一个空格,如:</p>
+<pre class="line-numbers language-cpp"><code class="language-cpp"><span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%d%d%d%d"</span><span class="token punctuation">,</span> a<span class="token punctuation">,</span> b<span class="token punctuation">,</span> c<span class="token punctuation">,</span> d<span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>在for循环中的分号后面加一个空格, 如:</p>
+<pre class="line-numbers language-cpp"><code class="language-cpp"><span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> <span class="token number">0</span><span class="token punctuation">;</span> <span class="token operator">++</span>i<span class="token punctuation">)</span><span class="token punctuation">{</span> <span class="token comment" spellcheck="true">// PS: 在某些环境下, for循环中使用++i比i++快一丢丢</span>
+
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<p>在<code>! &amp;</code>等一元运算符(只有一个参数的运算符)后<strong>不加空格</strong>,如:</p>
+<pre class="line-numbers language-cpp"><code class="language-cpp"><span class="token function">scanf</span><span class="token punctuation">(</span><span class="token string">"%d%d%d"</span><span class="token punctuation">,</span> <span class="token operator">&amp;</span>a<span class="token punctuation">,</span> <span class="token operator">&amp;</span>b<span class="token punctuation">,</span> <span class="token operator">&amp;</span>c<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">if</span><span class="token punctuation">(</span><span class="token operator">!</span>a<span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<h1 id="变量和函数的命名"><a href="#变量和函数的命名" class="headerlink" title="变量和函数的命名"></a>变量和函数的命名</h1><p>有意义的变量名字能够让阅读你代码的人立刻理解变量的意义是什么, 方便代码交流.</p>
+<p><strong>变量命名并没有清晰的规范, 以下的都是作者的个人经验</strong></p>
+<p>循环变量命名: <code>i j k</code></p>
+<p>和总量大小有关的变量命名: <code>m n</code></p>
+<p>数组的命名: <code>data[MAXN][MAXN] array[MAXN][MAXN]</code></p>
+<p>标志的命名: <code>flag</code><br>如:</p>
+<pre class="line-numbers language-cpp"><code class="language-cpp"><span class="token keyword">int</span> <span class="token function">isPrime</span><span class="token punctuation">(</span><span class="token keyword">int</span> n<span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token keyword">int</span> flag <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+    <span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">2</span><span class="token punctuation">;</span> i <span class="token operator">*</span> i <span class="token operator">&lt;=</span> n<span class="token punctuation">;</span> <span class="token operator">++</span> i<span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token keyword">if</span><span class="token punctuation">(</span>n <span class="token operator">%</span> i <span class="token operator">==</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+            flag <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 表明找到因子</span>
+            <span class="token keyword">break</span><span class="token punctuation">;</span>
+        <span class="token punctuation">}</span>
+    <span class="token punctuation">}</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span>flag<span class="token punctuation">)</span><span class="token punctuation">{</span>
+        <span class="token comment" spellcheck="true">// 如果有因子</span>
+        <span class="token keyword">return</span> <span class="token number">0</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span><span class="token keyword">else</span><span class="token punctuation">{</span>
+        <span class="token keyword">return</span> <span class="token number">1</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>字符串命名: <code>str1 str2</code></p>
+<p>用英文单词命名: <code>scores[MAXN] students[MAXN]</code></p>
+<p>如果名字中要有多个英文单词, 有两种命名方式:</p>
+<ol>
+<li>驼峰命名法(camel case) 第一个字母小写, 之后每个单词的首字母大写:<br><code>thisIsAVeryLongVariableNameForSomeVeryStupidReason</code></li>
+<li>蛇形命名法(snake case) 单词和单词之间用下滑线连接<br><code>this_is_a_very_long_variable_name_for_some_very_stupid_reason</code></li>
+</ol>
+<p>两种命名方式均被广泛使用, 根据个人习惯选择即可. <del>作者印象里c语言常用的是蛇形命名法, 但不确定</del></p>
+<p>(不推荐, 但是比无意义命名好)汉语拼音命名: <code>xueshengfenshu[MAXN]</code></p>
+<p>函数命名:</p>
+<p>英文单词命名, 尽量<strong>动词开头</strong>, 如:<br><code>is_prime get_numbers solve</code></p>
+<p>算法名字命名, 如:<br><code>dfs dfs prim dijkstra</code></p>
+<p>绝对不能用的命名: <code>mian</code></p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://leoleoasd.me/2019/11/09/sui-yuan-zhi-bei-dai-ma-cha-cuo-zhi-bei/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/medias/leo@8x.png">
+      <meta itemprop="name" content="Leo">
+      <meta itemprop="description" content="Yet another blog">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Leo">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/11/09/sui-yuan-zhi-bei-dai-ma-cha-cuo-zhi-bei/" class="post-title-link" itemprop="url">随缘指北 代码查错指北</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2019-11-09 19:11:39" itemprop="dateCreated datePublished" datetime="2019-11-09T19:11:39+08:00">2019-11-09</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-04-01 19:25:56" itemprop="dateModified" datetime="2021-04-01T19:25:56+08:00">2021-04-01</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body heti" itemprop="articleBody">
+
+      
+          <h1 id="代码差错指北"><a href="#代码差错指北" class="headerlink" title="代码差错指北"></a>代码差错指北</h1><p>如题, 这是随缘更新的指北.</p>
+<p>不严谨的统计显示, 程序员的工作时间中, 10%用于构思和写代码, 30%用于debug, 60%用于纠结该给变量起什么名字.</p>
+<p>那么问题来了, <del>抢答!! PHP天下第一!!</del>, 如何DEBUG才是高效的DEBUG呢?</p>
+<h1 id="LOG调试法"><a href="#LOG调试法" class="headerlink" title="LOG调试法"></a>LOG调试法</h1><p>打LOG无论是在学习中还是在工作中都是极其重要的DEBUG方式. <a href="%E2%9D%84%EF%B8%8F.%E2%9D%84%EF%B8%8F%E5%92%8C%E6%88%91%E7%9A%84%E5%BE%AE%E4%BF%A1%E8%81%8A%E5%A4%A9%E8%AE%B0%E5%BD%95%5BOL%5D.%E5%BE%AE%E4%BF%A1,2019">1</a> 那么就有人问了, 啥是打LOG?</p>
+<blockquote>
+<p>LOG能帮我们:</p>
+<p>对程序运行情况的记录和监控；</p>
+<p>了解程序的运行状态</p>
+</blockquote>
+<p>总而言之, LOG就是程序运行时输出的帮助我们辨别程序运行状态的输出.</p>
+<h2 id="通过LOG看变量的值"><a href="#通过LOG看变量的值" class="headerlink" title="通过LOG看变量的值"></a>通过LOG看变量的值</h2><p>这点很显然, 程序执行到一半输出变量的值就能知道变量的值是多少. <del>废话</del> 需要注意的是, 不仅仅能打印变量的值, 还能打印表达式的值.</p>
+<p>举个例子: 优秀的X同学在做某道题的时候写出了以下的代码</p>
+<pre class="line-numbers language-cpp"><code class="language-cpp"><span class="token keyword">long</span> a<span class="token punctuation">;</span>
+<span class="token function">scanf</span><span class="token punctuation">(</span><span class="token string">"%d"</span><span class="token punctuation">,</span><span class="token operator">&amp;</span>a<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 注意这里有一个错误: 应该是%ld</span>
+
+<span class="token keyword">if</span><span class="token punctuation">(</span>a<span class="token operator">==</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    执行某些代码
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>他输入了-1之后,发现本应执行的if语句内代码并没有被执行. 于是他就在第三行插入了 <code>printf(&quot;%d&quot;,a==-1);</code>, 发现输出的值是0, 意味着a并不等于-1. 意识到 <code>a!=-1</code> 之后, 优秀的X同学就意识到了scanf处出现了错误.</p>
+<h2 id="通过LOG判断程序执行的位置"><a href="#通过LOG判断程序执行的位置" class="headerlink" title="通过LOG判断程序执行的位置"></a>通过LOG判断程序执行的位置</h2><p>看到上面的例子后, 各位可能有个疑惑: “X同学是怎么知道程序没有执行if语句内的内容呢?”</p>
+<p>(做手势: 看看本节标题) 你是不是心中浮现了一个玄妙的想法: 只要在if语句内输出点东西就好了啊! 是不是特别神奇! (夸张脸)</p>
+<p>说时迟, 那时快, 只见X同学飞快的敲下了以下代码</p>
+<pre class="line-numbers language-cpp"><code class="language-cpp"><span class="token keyword">long</span> a<span class="token punctuation">;</span>
+<span class="token function">scanf</span><span class="token punctuation">(</span><span class="token string">"%d"</span><span class="token punctuation">,</span><span class="token operator">&amp;</span>a<span class="token punctuation">)</span><span class="token punctuation">;</span> <span class="token comment" spellcheck="true">// 注意这里有一个错误: 应该是%ld</span>
+
+<span class="token keyword">if</span><span class="token punctuation">(</span>a<span class="token operator">==</span><span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"这个东西应该输出的啊???"</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span class="token comment" spellcheck="true">// 当然并没有输出</span>
+    执行某些代码
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>当他按下了神圣的<code>F11</code>键之后, “当场他就懵了”, 陷入了沉思.</p>
+<h2 id="通过LOG查看递归调用的函数"><a href="#通过LOG查看递归调用的函数" class="headerlink" title="通过LOG查看递归调用的函数"></a>通过LOG查看递归调用的函数</h2><p>这点可能课内还没有学到, 可以等讲完课后回来复习 (观众留存度++)</p>
+<p>对于一个递归函数, 比如汉诺塔:</p>
+<pre class="line-numbers language-cpp"><code class="language-cpp"><span class="token keyword">void</span> <span class="token function">hanoi</span><span class="token punctuation">(</span><span class="token keyword">int</span> n<span class="token punctuation">,</span> <span class="token keyword">char</span> from<span class="token punctuation">,</span> <span class="token keyword">char</span> via<span class="token punctuation">,</span> <span class="token keyword">char</span> to<span class="token punctuation">)</span> <span class="token punctuation">{</span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"将要从%c通过借助%c移动%d个盘子到%c\n"</span><span class="token punctuation">,</span>from<span class="token punctuation">,</span>via<span class="token punctuation">,</span>n<span class="token punctuation">,</span>to<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">if</span> <span class="token punctuation">(</span>n <span class="token operator">==</span> <span class="token number">1</span><span class="token punctuation">)</span>
+        <span class="token function">move</span><span class="token punctuation">(</span>from<span class="token punctuation">,</span> to<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token keyword">else</span> <span class="token punctuation">{</span>
+        <span class="token function">hanoi</span><span class="token punctuation">(</span>n <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">,</span> from<span class="token punctuation">,</span> to<span class="token punctuation">,</span> via<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token function">move</span><span class="token punctuation">(</span>from<span class="token punctuation">,</span> to<span class="token punctuation">)</span><span class="token punctuation">;</span>
+        <span class="token function">hanoi</span><span class="token punctuation">(</span>n <span class="token operator">-</span> <span class="token number">1</span><span class="token punctuation">,</span> via<span class="token punctuation">,</span> from<span class="token punctuation">,</span> to<span class="token punctuation">)</span><span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+    <span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"已经从%c通过借助%c移动%d个盘子到%c\n"</span><span class="token punctuation">,</span>from<span class="token punctuation">,</span>via<span class="token punctuation">,</span>n<span class="token punctuation">,</span>to<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h1 id="室友调试法"><a href="#室友调试法" class="headerlink" title="室友调试法"></a>室友调试法</h1><p>把室友扥(den)过来, 完整的讲述你程序的思路给他听, (不用管室友是否真的在听), 一般讲到一半你就会意识到你哪儿错了</p>
+<h1 id="小黄鸭调试法"><a href="#小黄鸭调试法" class="headerlink" title="小黄鸭调试法"></a>小黄鸭调试法</h1><p>没有室友? 找一只小黄鸭放在桌子上给它讲述你的程序思路.</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://leoleoasd.me/2019/11/09/mei-ri-yi-ti-mei-wei-shu-zi-wen-ti/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/medias/leo@8x.png">
+      <meta itemprop="name" content="Leo">
+      <meta itemprop="description" content="Yet another blog">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Leo">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/11/09/mei-ri-yi-ti-mei-wei-shu-zi-wen-ti/" class="post-title-link" itemprop="url">每日一题 每位数字问题</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2019-11-09 19:11:11" itemprop="dateCreated datePublished" datetime="2019-11-09T19:11:11+08:00">2019-11-09</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-04-01 19:25:56" itemprop="dateModified" datetime="2021-04-01T19:25:56+08:00">2021-04-01</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body heti" itemprop="articleBody">
+
+      
+          <h1 id="大概每日一题"><a href="#大概每日一题" class="headerlink" title="大概每日一题"></a>大概每日一题</h1><p>首先, 给各位道个歉. 昨天由于<strong>沉迷学习</strong>忘了更新, <del>绝对不是忙于抢新题库的一血</del></p>
+<p>那么,</p>
+<h2 id="作天的题"><a href="#作天的题" class="headerlink" title="作天的题"></a>作天的题</h2><h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述"></a>题目描述</h3><pre class="line-numbers language-cpp"><code class="language-cpp">本关任务：计算正整数num的各位上的数字之积。
+例如：
+输入：<span class="token number">2583</span>  经过<span class="token punctuation">(</span>2x5x8x3<span class="token punctuation">)</span> 输出：<span class="token number">240</span>
+输入：<span class="token number">102</span>   经过<span class="token punctuation">(</span>1x0x2<span class="token punctuation">)</span>   输出：<span class="token number">0</span>
+输入：<span class="token number">136</span>   经过<span class="token punctuation">(</span>1x3x6<span class="token punctuation">)</span>   输出：<span class="token number">18</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h3 id="输入"><a href="#输入" class="headerlink" title="输入"></a>输入</h3><pre class="line-numbers language-cpp"><code class="language-cpp">一个数num<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h3 id="输出"><a href="#输出" class="headerlink" title="输出"></a>输出</h3><pre class="line-numbers language-cpp"><code class="language-cpp">运算结果<span class="token punctuation">(</span>一个整数<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h2 id="做题思路1"><a href="#做题思路1" class="headerlink" title="做题思路1"></a>做题思路1</h2><p>循环, 每次取一位, 和ans变量相乘.</p>
+<h3 id="伪代码"><a href="#伪代码" class="headerlink" title="伪代码:"></a>伪代码:</h3><pre class="line-numbers language-cpp"><code class="language-cpp">ans <span class="token operator">=</span> <span class="token number">1</span>
+输入num
+k <span class="token operator">=</span> <span class="token number">1</span>
+<span class="token keyword">while</span><span class="token punctuation">(</span>num <span class="token operator">/</span> k <span class="token operator">!=</span> <span class="token number">0</span><span class="token punctuation">)</span><span class="token operator">:</span>
+    ans <span class="token operator">*</span><span class="token operator">=</span> <span class="token punctuation">(</span>num<span class="token operator">/</span>k<span class="token punctuation">)</span><span class="token operator">%</span><span class="token number">10</span> <span class="token comment" spellcheck="true">// num去掉后面的位数后取最后一位</span>
+    k <span class="token operator">*</span><span class="token operator">=</span> <span class="token number">10</span>
+输出ans<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>这种思路的核心在于, 设置中间变量k. 每次把num除k来去掉尾部多余的位数之后取最后一位累乘.</p>
+<h2 id="做题思路2"><a href="#做题思路2" class="headerlink" title="做题思路2"></a>做题思路2</h2><p>循环, 每次取num的最后一位, 和ans变量相乘后<strong>去掉最后一位</strong></p>
+<h3 id="伪代码-1"><a href="#伪代码-1" class="headerlink" title="伪代码:"></a>伪代码:</h3><pre class="line-numbers language-cpp"><code class="language-cpp">ans <span class="token operator">=</span> <span class="token number">1</span>
+读入num
+<span class="token keyword">while</span> num <span class="token operator">!=</span> <span class="token number">0</span><span class="token operator">:</span>
+    ans <span class="token operator">*</span><span class="token operator">=</span> <span class="token punctuation">(</span>num<span class="token operator">%</span><span class="token number">10</span><span class="token punctuation">)</span> <span class="token comment" spellcheck="true">// ans乘以num的最后一位</span>
+    num <span class="token operator">/</span><span class="token operator">=</span> <span class="token number">10</span>       <span class="token comment" spellcheck="true">// 核心: 去掉num的最后一位</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>这个思路的核心在于, 每次取最后一位num用于计算后<strong>去掉最后一位</strong>.<br>相比第一个思路的好处是 <strong>省略了一个中间变量</strong>.</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://leoleoasd.me/2019/11/09/1024-te-bie-jie-mu/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/medias/leo@8x.png">
+      <meta itemprop="name" content="Leo">
+      <meta itemprop="description" content="Yet another blog">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Leo">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/11/09/1024-te-bie-jie-mu/" class="post-title-link" itemprop="url">1024特别节目</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2019-11-09 19:10:44" itemprop="dateCreated datePublished" datetime="2019-11-09T19:10:44+08:00">2019-11-09</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-04-01 19:25:56" itemprop="dateModified" datetime="2021-04-01T19:25:56+08:00">2021-04-01</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body heti" itemprop="articleBody">
+
+      
+          <h1 id="1024特别节目"><a href="#1024特别节目" class="headerlink" title="1024特别节目"></a>1024特别节目</h1><p>今天是1024程序员节</p>
+<p>不知道能为各位做点什么,<br>给各位画幅画吧</p>
+<pre class="line-numbers language-cpp"><code class="language-cpp">
+  O  
+<span class="token operator">~</span><span class="token operator">~</span><span class="token operator">~</span><span class="token operator">~</span><span class="token operator">~</span>
+<span class="token operator">~</span><span class="token operator">~</span><span class="token operator">~</span><span class="token operator">~</span><span class="token operator">~</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span></span></code></pre>
+<p>一副海上明月图送给大家</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://leoleoasd.me/2019/11/09/mei-ri-yi-ti-an-dian/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/medias/leo@8x.png">
+      <meta itemprop="name" content="Leo">
+      <meta itemprop="description" content="Yet another blog">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Leo">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/11/09/mei-ri-yi-ti-an-dian/" class="post-title-link" itemprop="url">每日一题 鞍点</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2019-11-09 19:10:12" itemprop="dateCreated datePublished" datetime="2019-11-09T19:10:12+08:00">2019-11-09</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-04-01 19:25:56" itemprop="dateModified" datetime="2021-04-01T19:25:56+08:00">2021-04-01</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body heti" itemprop="articleBody">
+
+      
+          <h1 id="每日一题"><a href="#每日一题" class="headerlink" title="每日一题"></a>每日一题</h1><p>公众号新开了个栏目, 叫大概每日一题.</p>
+<p>那么问题来了, 为啥叫大概每日一题呢?</p>
+<p>鸽子表情包</p>
+<h2 id="今天的题"><a href="#今天的题" class="headerlink" title="今天的题"></a>今天的题</h2><h3 id="题目描述"><a href="#题目描述" class="headerlink" title="题目描述:"></a>题目描述:</h3><pre><code>找出具有m行n列二维数组Array的“鞍点”，即该位置上的元素在该行上最大，在该列上最小，其中1&lt;=m,n&lt;=10。</code></pre>
+<h3 id="输入"><a href="#输入" class="headerlink" title="输入:"></a>输入:</h3><pre><code>第一行有两个数m和n，下面有m行，每行有n个数。</code></pre>
+<h3 id="输出"><a href="#输出" class="headerlink" title="输出:"></a>输出:</h3><pre><code>Array[i][j]=x</code></pre>
+<h2 id="做题思路"><a href="#做题思路" class="headerlink" title="做题思路"></a>做题思路</h2><p>这道题的思路还是比较清晰的: 枚举每一行, 寻找这一行里最大的数在第几列, 寻找那一列最小的数, 看看这一行最大的数是不是这一列最小的数.</p>
+<h2 id="伪代码"><a href="#伪代码" class="headerlink" title="伪代码:"></a>伪代码:</h2><pre><code>输入m,n
+循环i从0到m-1
+    循环j从0到n-1
+        读入data[i][j]
+
+循环i从0到m-1
+    max=data[i][0]
+    pos=0
+    循环j从0到n-1
+        如果data[i][j] 大于 max
+            更新max与pos
+
+    flag = 1
+    循环j从0到n-1
+        如果data[j][pos]小于max
+            flag = 0
+    如果flag=1 说明data[i][pos]是鞍点
+        输出,退出程序
+输出none</code></pre>
+<h2 id="注意点"><a href="#注意点" class="headerlink" title="注意点"></a>注意点</h2><p>在找数组的最小值的时候有两种实现方式:</p>
+<pre class="line-numbers language-cpp"><code class="language-cpp"><span class="token keyword">int</span> min <span class="token operator">=</span> <span class="token number">0x70000000</span><span class="token punctuation">;</span>
+<span class="token keyword">int</span> pos <span class="token operator">=</span> <span class="token operator">-</span><span class="token number">1</span><span class="token punctuation">;</span>
+<span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> n<span class="token punctuation">;</span><span class="token operator">++</span> i<span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span>min <span class="token operator">&lt;</span> data<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        min <span class="token operator">=</span> data<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span>
+        pos <span class="token operator">=</span> i<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>与</p>
+<pre class="line-numbers language-cpp"><code class="language-cpp"><span class="token keyword">int</span> min <span class="token operator">=</span> data<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">;</span>
+<span class="token keyword">int</span> pos <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span>
+<span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> n<span class="token punctuation">;</span><span class="token operator">++</span> i<span class="token punctuation">)</span><span class="token punctuation">{</span>
+    <span class="token keyword">if</span><span class="token punctuation">(</span>min <span class="token operator">&lt;</span> data<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+        min <span class="token operator">=</span> data<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">;</span>
+        pos <span class="token operator">=</span> i<span class="token punctuation">;</span>
+    <span class="token punctuation">}</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>第一种方式将min设为极大值(或将max设为极小值), 第二种方式奖min设为数组第一项的值.</p>
+<p>这两种方式都是正确的, 要注意的就是</p>
+<ol>
+<li>使用第一种方式时设置的极大值一定要很大.<ol>
+<li>int所能存储的最大值是0x7fffffff, 所以对于以上情况把min设置为0x7ffffff是安全的.</li>
+<li>对于要比较min+data[i]和data[i]的大小的时候, min的初值应设置为int所能存储的最大值的一半, 以保证min+data[i]仍在int范围内. 对于这种情况, 0x3f3f3f3f是一个安全的值.</li>
+</ol>
+</li>
+<li>使用第二种方式一定要把pos变量初始化为0</li>
+</ol>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+        
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block home" lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://leoleoasd.me/2019/06/30/mac-shang-docker-de-yi-xie-keng/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/medias/leo@8x.png">
+      <meta itemprop="name" content="Leo">
+      <meta itemprop="description" content="Yet another blog">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Leo">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          
+            <a href="/2019/06/30/mac-shang-docker-de-yi-xie-keng/" class="post-title-link" itemprop="url">Mac上Docker的一些坑</a>
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2019-06-30 16:37:19" itemprop="dateCreated datePublished" datetime="2019-06-30T16:37:19+08:00">2019-06-30</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-04-01 19:25:56" itemprop="dateModified" datetime="2021-04-01T19:25:56+08:00">2021-04-01</time>
+              </span>
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              <span class="post-meta-item-text">分类于</span>
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E6%8A%98%E8%85%BE%E7%AC%94%E8%AE%B0/" itemprop="url" rel="index">
+                    <span itemprop="name">折腾笔记</span>
+                  </a>
+                </span>
+            </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body heti" itemprop="articleBody">
+
+      
+          <p>在搭建我的个人开发环境的过程中, 对于PHP开发我选择了Docker这样的方案. 这种方案相比valet最大的好处就在于自由: 可以自由定制自己所需的nginx配置, php配置, 在安装php插件时也会方便一些.<br>但是, 在搭建完毕运行之后, 碰到了许多坑.<br>我最先搭建的是WHMCS测试站. 搭建完毕之后发现无论打开什么页面, 最短的加载时间也在5s左右. 对于搭建在本地的whmcs来讲, 这自然是十分不正常的, 百度了一下如何解决之后, 我决定开启php-fpm的slowlog来看看是哪里出了问题.<br>在docker中开启slowlog之后, 超时时间设置为了1s, 但是当页面加载时间为5s时, log文件内仍无任何内容.<br>Google了一番, 发现php-fpm使用SYS_PTRACE这一个系统调用来统计程序运行的时间, 而默认情况下docker容器内并没有此权限, 只要在docker-compose.yml内加入 <code>privileged: true</code> 即可解决问题.<br>这就是第一个坑: <code>PHP-fpm在无任何错误提示的时候不能产出slowlog</code></p>
+<p>折腾了半天终于能看到slowlog了, 内容却让我很疑惑: </p>
+<pre class="line-numbers language-log"><code class="language-log">[30-Jun-2019 15:33:20]  [pool www] pid 10
+script_filename = /data/www/whmcs//admin/login.php
+[0x00007f063aa211b0] Composer\Autoload\includeFile() /data/www/whmcs/vendor/composer/ClassLoader.php:322
+[0x00007f063aa21120] loadClass() unknown:0
+[0x00007f063aa210c0] spl_autoload_call() unknown:0
+[0x00007ffdbaff9320] ???() /data/www/whmcs/loghandler.php:44<span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<p>占据主要时间的前三个函数都是composer的函数, 貌似没有任何解决方案. 在Google一番之后, 发现这里的慢主要在于 OS X 下的 Docker 磁盘性能过低, 导致读取php文件速度过慢, 时间变长. 测试了各种解决方案之后, <a href="//docker-sync.io" target="_blank" rel="noopener">docker-sync</a> 解决了这个问题, 将整个网页的加载时间由5s缩短为300ms.</p>
+<p>更新: docker-sync有各种玄学bug, 还是虚拟机为妙.</p>
+
+      
+    </div>
+
+    
+    
+    
+      <footer class="post-footer">
+        <div class="post-eof"></div>
+      </footer>
+  </article>
+  
+  
+  
+
+  </div>
+
+  
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" href="/page/5/"><i class="fa fa-angle-left" aria-label="上一页"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span><a class="page-number" href="/page/7/">7</a><a class="extend next" rel="next" href="/page/7/"><i class="fa fa-angle-right" aria-label="下一页"></i></a>
+  </nav>
+
+
+
+          </div>
+          
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Leo"
+      src="/medias/leo@8x.png">
+  <p class="site-author-name" itemprop="name">Leo</p>
+  <div class="site-description" itemprop="description">Yet another blog</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">39</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">32</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/leoleoasd" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;leoleoasd" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:i@leoleoasd.me" title="E-Mail → mailto:i@leoleoasd.me"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title">
+      <i class="fa fa-fw fa-link"></i>
+      友情链接
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://www.renjikai.com/" title="https:&#x2F;&#x2F;www.renjikai.com" rel="noopener" target="_blank">杰克部落</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.wevg.org/" title="https:&#x2F;&#x2F;www.wevg.org" rel="noopener" target="_blank">Vigorous Pro</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://blog.piggy.moe/" title="https:&#x2F;&#x2F;blog.piggy.moe" rel="noopener" target="_blank">Piggy</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://blog.valderfield.com/" title="https:&#x2F;&#x2F;blog.valderfield.com&#x2F;" rel="noopener" target="_blank">Colin</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://blog.skk.moe/" title="https:&#x2F;&#x2F;blog.skk.moe&#x2F;" rel="noopener" target="_blank">苏卡卡的有底洞</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://qaq.cat/" title="https:&#x2F;&#x2F;qaq.cat&#x2F;" rel="noopener" target="_blank">Balthild’s Blog</a>
+        </li>
+    </ul>
+  </div>
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Leo</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v4.2.1
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.7.1
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/pjax/pjax.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+  <script>
+var pjax = new Pjax({
+  selectors: [
+    'head title',
+    '#page-configurations',
+    '.content-wrap',
+    '.post-toc-wrap',
+    '#pjax'
+  ],
+  switches: {
+    '.post-toc-wrap': Pjax.switches.innerHTML
+  },
+  analytics: false,
+  cacheBust: false,
+  scrollTo : !CONFIG.bookmark.enable
+});
+
+window.addEventListener('pjax:success', () => {
+  document.querySelectorAll('script[pjax], script#page-configurations, #pjax script').forEach(element => {
+    var code = element.text || element.textContent || element.innerHTML || '';
+    var parent = element.parentNode;
+    parent.removeChild(element);
+    var script = document.createElement('script');
+    if (element.id) {
+      script.id = element.id;
+    }
+    if (element.className) {
+      script.className = element.className;
+    }
+    if (element.type) {
+      script.type = element.type;
+    }
+    if (element.src) {
+      script.src = element.src;
+      // Force synchronous loading of peripheral JS.
+      script.async = false;
+    }
+    if (element.getAttribute('pjax') !== null) {
+      script.setAttribute('pjax', '');
+    }
+    if (code !== '') {
+      script.appendChild(document.createTextNode(code));
+    }
+    parent.appendChild(script);
+  });
+  NexT.boot.refresh();
+  // Define Motion Sequence & Bootstrap Motion.
+  if (CONFIG.motion.enable) {
+    NexT.motion.integrator
+      .init()
+      .add(NexT.motion.middleWares.subMenu)
+      .add(NexT.motion.middleWares.postList)
+      .bootstrap();
+  }
+  NexT.utils.updateSidebarPosition();
+});
+</script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div id="pjax">
+  
+
+  
+
+
+  <script>
+    const heti = new Heti('.heti');
+    heti.autoSpacing(); // 自动进行中西文混排美化和标点挤压
+  </script>
+
+    </div>
+</body>
+</html>

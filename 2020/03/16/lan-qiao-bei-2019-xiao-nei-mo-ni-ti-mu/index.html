@@ -1,0 +1,795 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/medias/leo@8x-1.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/medias/leo@8x.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/medias/leo@4x.png">
+  <link rel="mask-icon" href="/medias/leo@8x-1.png" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"leoleoasd.me","root":"/","scheme":"Muse","version":"7.7.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="蓝桥杯北京工业大学模拟赛 2020.03.151. 问题描述在计算机存储中，15.125GB是多少MB？ 答案提交这是一道结果填空的题，你只需要算出结果后提交即可。本题的结果    为一个整数，在提交答案时只填写这个整数，填写多余的内容将无法得分。 2. 问题描述1200000有多少个约数（只计算正约数）。 答案提交这是一道结果填空的题，你只需要算出结果后提交即可。本题的结果为一个整数，在提交答案">
+<meta property="og:type" content="article">
+<meta property="og:title" content="蓝桥杯2019校内模拟题目">
+<meta property="og:url" content="http://leoleoasd.me/2020/03/16/lan-qiao-bei-2019-xiao-nei-mo-ni-ti-mu/index.html">
+<meta property="og:site_name" content="Leo">
+<meta property="og:description" content="蓝桥杯北京工业大学模拟赛 2020.03.151. 问题描述在计算机存储中，15.125GB是多少MB？ 答案提交这是一道结果填空的题，你只需要算出结果后提交即可。本题的结果    为一个整数，在提交答案时只填写这个整数，填写多余的内容将无法得分。 2. 问题描述1200000有多少个约数（只计算正约数）。 答案提交这是一道结果填空的题，你只需要算出结果后提交即可。本题的结果为一个整数，在提交答案">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2020-03-16T13:13:25.000Z">
+<meta property="article:modified_time" content="2021-04-01T11:25:56.936Z">
+<meta property="article:author" content="Leo">
+<meta property="article:tag" content="OI">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://leoleoasd.me/2020/03/16/lan-qiao-bei-2019-xiao-nei-mo-ni-ti-mu/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true
+  };
+</script>
+
+  <title>蓝桥杯2019校内模拟题目 | Leo</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-141894777-1"></script>
+    <script pjax>
+      if (CONFIG.hostname === location.hostname) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-141894777-1');
+      }
+    </script>
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+  <link rel="stylesheet" href="//unpkg.com/heti/umd/heti.min.css">
+  <script src="//unpkg.com/heti/umd/heti-addon.min.js"></script>
+<link rel="stylesheet" href="/css/prism-hopscotch.css" type="text/css">
+<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"><style>mjx-container[jax="SVG"] {
+  direction: ltr;
+}
+
+mjx-container[jax="SVG"] > svg {
+  overflow: visible;
+}
+
+mjx-container[jax="SVG"] > svg a {
+  fill: blue;
+  stroke: blue;
+}
+
+mjx-container[jax="SVG"][display="true"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+
+mjx-container[jax="SVG"][justify="left"] {
+  text-align: left;
+}
+
+mjx-container[jax="SVG"][justify="right"] {
+  text-align: right;
+}
+
+g[data-mml-node="merror"] > g {
+  fill: red;
+  stroke: red;
+}
+
+g[data-mml-node="merror"] > rect[data-background] {
+  fill: yellow;
+  stroke: none;
+}
+
+g[data-mml-node="mtable"] > line[data-line] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > rect[data-frame] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > .mjx-dashed {
+  stroke-dasharray: 140;
+}
+
+g[data-mml-node="mtable"] > .mjx-dotted {
+  stroke-linecap: round;
+  stroke-dasharray: 0,140;
+}
+
+g[data-mml-node="mtable"] > svg {
+  overflow: visible;
+}
+
+[jax="SVG"] mjx-tool {
+  display: inline-block;
+  position: relative;
+  width: 0;
+  height: 0;
+}
+
+[jax="SVG"] mjx-tool > mjx-tip {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+mjx-tool > mjx-tip {
+  display: inline-block;
+  padding: .2em;
+  border: 1px solid #888;
+  font-size: 70%;
+  background-color: #F8F8F8;
+  color: black;
+  box-shadow: 2px 2px 5px #AAAAAA;
+}
+
+g[data-mml-node="maction"][data-toggle] {
+  cursor: pointer;
+}
+
+mjx-status {
+  display: block;
+  position: fixed;
+  left: 1em;
+  bottom: 1em;
+  min-width: 25%;
+  padding: .2em .4em;
+  border: 1px solid #888;
+  font-size: 90%;
+  background-color: #F8F8F8;
+  color: black;
+}
+
+foreignObject[data-mjx-xml] {
+  font-family: initial;
+  line-height: normal;
+  overflow: visible;
+}
+
+.MathJax path {
+  stroke-width: 3;
+}
+
+mjx-container[display="true"] {
+  overflow: auto hidden;
+}
+
+mjx-container[display="true"] + br {
+  display: none;
+}
+</style></head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Leo</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">Leo's cottage.</p>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://leoleoasd.me/2020/03/16/lan-qiao-bei-2019-xiao-nei-mo-ni-ti-mu/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/medias/leo@8x.png">
+      <meta itemprop="name" content="Leo">
+      <meta itemprop="description" content="Yet another blog">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Leo">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          蓝桥杯2019校内模拟题目
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2020-03-16 21:13:25" itemprop="dateCreated datePublished" datetime="2020-03-16T21:13:25+08:00">2020-03-16</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-04-01 19:25:56" itemprop="dateModified" datetime="2021-04-01T19:25:56+08:00">2021-04-01</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body heti" itemprop="articleBody">
+
+      
+        <h2 id="蓝桥杯北京工业大学模拟赛-2020-03-15"><a href="#蓝桥杯北京工业大学模拟赛-2020-03-15" class="headerlink" title="蓝桥杯北京工业大学模拟赛 2020.03.15"></a>蓝桥杯北京工业大学模拟赛 2020.03.15</h2><h3 id="1-问题描述"><a href="#1-问题描述" class="headerlink" title="1. 问题描述"></a>1. 问题描述</h3><p>在计算机存储中，15.125GB是多少MB？</p>
+<h4 id="答案提交"><a href="#答案提交" class="headerlink" title="答案提交"></a>答案提交</h4><p>这是一道结果填空的题，你只需要算出结果后提交即可。本题的结果    为一个整数，在提交答案时只填写这个整数，填写多余的内容将无法得分。</p>
+<h3 id="2-问题描述"><a href="#2-问题描述" class="headerlink" title="2. 问题描述"></a>2. 问题描述</h3><p>1200000有多少个约数（只计算正约数）。</p>
+<h4 id="答案提交-1"><a href="#答案提交-1" class="headerlink" title="答案提交"></a>答案提交</h4><p>这是一道结果填空的题，你只需要算出结果后提交即可。本题的结果为一个整数，在提交答案时只填写这个整数，填写多余的内容将无法得分。</p>
+<h3 id="3-问题描述"><a href="#3-问题描述" class="headerlink" title="3. 问题描述"></a>3. 问题描述</h3><p>在1至2019中，有多少个数的数位中包含数字9？</p>
+<p>注意，有的数中的数位中包含多个9，这个数只算一次。例如，1999这个数包含数字9，在计算只是算一个数。</p>
+<h4 id="答案提交-2"><a href="#答案提交-2" class="headerlink" title="答案提交"></a>答案提交</h4><p>这是一道结果填空的题，你只需要算出结果后提交即可。本题的结果为一个整数，在提交答案时只填写这个整数，填写多余的内容将无法得分。</p>
+<h3 id="4-问题描述"><a href="#4-问题描述" class="headerlink" title="4. 问题描述"></a>4. 问题描述</h3><p>一棵包含有2019个结点的树，最多包含多少个叶结点？</p>
+<h4 id="答案提交-3"><a href="#答案提交-3" class="headerlink" title="答案提交"></a>答案提交</h4><p>这是一道结果填空的题，你只需要算出结果后提交即可。本题的结果为一个整数，在提交答案时只填写这个整数，填写多余的内容将无法得分。</p>
+<h3 id="5-问题描述"><a href="#5-问题描述" class="headerlink" title="5. 问题描述"></a>5. 问题描述</h3><p>一个正整数如果任何一个数位不大于右边相邻的数位，则称为一个数位递增的数，例如1135是一个数位递增的数，而1024不是一个数位递增的数。</p>
+<p>给定正整数 n，请问在整数 1 至 n 中有多少个数位递增的数？</p>
+<h4 id="输入格式"><a href="#输入格式" class="headerlink" title="输入格式"></a>输入格式</h4><p>输入的第一行包含一个整数 n。</p>
+<h4 id="输出格式"><a href="#输出格式" class="headerlink" title="输出格式"></a>输出格式</h4><p>输出一行包含一个整数，表示答案。</p>
+<h4 id="样例输入"><a href="#样例输入" class="headerlink" title="样例输入"></a>样例输入</h4><pre><code>30</code></pre>
+<h4 id="样例输出"><a href="#样例输出" class="headerlink" title="样例输出"></a>样例输出</h4><pre><code>26</code></pre>
+<h4 id="评测用例规模与约定"><a href="#评测用例规模与约定" class="headerlink" title="评测用例规模与约定"></a>评测用例规模与约定</h4><p>对于 40% 的评测用例，1 &lt;= n &lt;= 1000。</p>
+<p>对于 80% 的评测用例，1 &lt;= n &lt;= 100000。</p>
+<p>对于所有评测用例，1 &lt;= n &lt;= 1000000。</p>
+<h3 id="6-问题描述"><a href="#6-问题描述" class="headerlink" title="6. 问题描述"></a>6. 问题描述</h3><p>小明对类似于 hello 这种单词非常感兴趣，这种单词可以正好分为四段，第一段由一个或多个辅音字母组成，第二段由一个或多个元音字母组成，第三段由一个或多个辅音字母组成，第四段由一个或多个元音字母组成。</p>
+<p>给定一个单词，请判断这个单词是否也是这种单词，如果是请输出yes，否则请输出no。</p>
+<p>元音字母包括 a, e, i, o, u，共五个，其他均为辅音字母。</p>
+<h4 id="输入格式-1"><a href="#输入格式-1" class="headerlink" title="输入格式"></a>输入格式</h4><p>输入一行，包含一个单词，单词中只包含小写英文字母。</p>
+<h4 id="输出格式-1"><a href="#输出格式-1" class="headerlink" title="输出格式"></a>输出格式</h4><p>输出答案，或者为yes，或者为no。</p>
+<h4 id="样例输入1"><a href="#样例输入1" class="headerlink" title="样例输入1"></a>样例输入1</h4><pre><code>lanqiao</code></pre>
+<h4 id="样例输出2"><a href="#样例输出2" class="headerlink" title="样例输出2"></a>样例输出2</h4><pre><code>yes</code></pre>
+<h4 id="样例输入1-1"><a href="#样例输入1-1" class="headerlink" title="样例输入1"></a>样例输入1</h4><pre><code>world</code></pre>
+<h4 id="样例输出2-1"><a href="#样例输出2-1" class="headerlink" title="样例输出2"></a>样例输出2</h4><pre><code>no</code></pre>
+<h3 id="7-问题描述"><a href="#7-问题描述" class="headerlink" title="7. 问题描述"></a>7. 问题描述</h3><p>在数列 a[1], a[2], …, a[n] 中，如果对于下标 i, j, k 满足 0&lt;i&lt;j&lt;k&lt;n+1 且 a[i]&lt;a[j]&lt;a[k]，则称 a[i], a[j], a[k] 为一组递增三元组，a[j]为递增三元组的中心。</p>
+<p>给定一个数列，请问数列中有多少个元素可能是递增三元组的中心。</p>
+<h4 id="输入格式-2"><a href="#输入格式-2" class="headerlink" title="输入格式"></a>输入格式</h4><p>输入的第一行包含一个整数 n。</p>
+<p>第二行包含 n 个整数 a[1], a[2], …, a[n]，相邻的整数间用空格分隔，表示给定的数列。</p>
+<h4 id="输出格式-2"><a href="#输出格式-2" class="headerlink" title="输出格式"></a>输出格式</h4><p>输出一行包含一个整数，表示答案。</p>
+<h4 id="样例输入-1"><a href="#样例输入-1" class="headerlink" title="样例输入"></a>样例输入</h4><pre><code>5
+1 2 5 3 5</code></pre>
+<h4 id="样例输出-1"><a href="#样例输出-1" class="headerlink" title="样例输出"></a>样例输出</h4><pre><code>2</code></pre>
+<h4 id="样例说明"><a href="#样例说明" class="headerlink" title="样例说明"></a>样例说明</h4><p>a[2] 和 a[4] 可能是三元组的中心。</p>
+<h4 id="评测用例规模与约定-1"><a href="#评测用例规模与约定-1" class="headerlink" title="评测用例规模与约定"></a>评测用例规模与约定</h4><p>对于 50% 的评测用例，2 &lt;= n &lt;= 100，0 &lt;= 数列中的数 &lt;= 1000。</p>
+<p>对于所有评测用例，2 &lt;= n &lt;= 1000，0 &lt;= 数列中的数 &lt;= 10000。</p>
+<h3 id="8-问题描述"><a href="#8-问题描述" class="headerlink" title="8. 问题描述"></a>8. 问题描述</h3><p>小明想知道，满足以下条件的正整数序列的数量：</p>
+<ol>
+<li><p>第一项为 n；</p>
+</li>
+<li><p>第二项不超过 n；</p>
+</li>
+<li><p>从第三项开始，每一项小于前两项的差的绝对值。<br>计算，对于给定的 n，有多少种满足条件的序列。</p>
+</li>
+</ol>
+<h4 id="输入格式-3"><a href="#输入格式-3" class="headerlink" title="输入格式"></a>输入格式</h4><p>输入一行包含一个整数 n。</p>
+<h4 id="输出格式-3"><a href="#输出格式-3" class="headerlink" title="输出格式"></a>输出格式</h4><p>输出一个整数，表示答案。答案可能很大，请输出答案除以10000的余数。</p>
+<h4 id="样例输入-2"><a href="#样例输入-2" class="headerlink" title="样例输入"></a>样例输入</h4><pre><code>4</code></pre>
+<h4 id="样例输出-2"><a href="#样例输出-2" class="headerlink" title="样例输出"></a>样例输出</h4><pre><code>7</code></pre>
+<h4 id="样例说明-1"><a href="#样例说明-1" class="headerlink" title="样例说明"></a>样例说明</h4><p>以下是满足条件的序列：</p>
+<pre><code>4 1
+4 1 1
+4 1 2
+4 2
+4 2 1
+4 3
+4 4</code></pre>
+<h4 id="评测用例规模与约定-2"><a href="#评测用例规模与约定-2" class="headerlink" title="评测用例规模与约定"></a>评测用例规模与约定</h4><p>对于 20% 的评测用例，1 &lt;= n &lt;= 5；</p>
+<p>对于 50% 的评测用例，1 &lt;= n &lt;= 10；</p>
+<p>对于 80% 的评测用例，1 &lt;= n &lt;= 100；</p>
+<p>对于所有评测用例，1 &lt;= n &lt;= 1000。</p>
+<h3 id="9-问题描述"><a href="#9-问题描述" class="headerlink" title="9. 问题描述"></a>9. 问题描述</h3><p>小明有一块空地，他将这块空地划分为 n 行 m 列的小块，每行和每列的长度都为 1。</p>
+<p>小明选了其中的一些小块空地，种上了草，其他小块仍然保持是空地。</p>
+<p>这些草长得很快，每个月，草都会向外长出一些，如果一个小块种了草，则它将向自己的上、下、左、右四小块空地扩展，这四小块空地都将变为有草的小块。</p>
+<p>请告诉小明，k 个月后空地上哪些地方有草。</p>
+<h4 id="输入格式-4"><a href="#输入格式-4" class="headerlink" title="输入格式"></a>输入格式</h4><p>输入的第一行包含两个整数 n, m。</p>
+<p>接下来 n 行，每行包含 m 个字母，表示初始的空地状态，字母之间没有空格。如果为小数点，表示为空地，如果字母为 g，表示种了草。</p>
+<p>接下来包含一个整数 k。</p>
+<h4 id="输出格式-4"><a href="#输出格式-4" class="headerlink" title="输出格式"></a>输出格式</h4><p>输出 n 行，每行包含 m 个字母，表示 k 个月后空地的状态。如果为小数点，表示为空地，如果字母为 g，表示长了草。</p>
+<h4 id="样例输入-3"><a href="#样例输入-3" class="headerlink" title="样例输入"></a>样例输入</h4><pre><code>4 5
+.g...
+.....
+..g..
+.....
+2</code></pre>
+<h4 id="样例输出-3"><a href="#样例输出-3" class="headerlink" title="样例输出"></a>样例输出</h4><pre><code>gggg.
+gggg.
+ggggg
+.ggg.</code></pre>
+<h4 id="评测用例规模与约定-3"><a href="#评测用例规模与约定-3" class="headerlink" title="评测用例规模与约定"></a>评测用例规模与约定</h4><p>对于 30% 的评测用例，2 &lt;= n, m &lt;= 20。</p>
+<p>对于 70% 的评测用例，2 &lt;= n, m &lt;= 100。</p>
+<p>对于所有评测用例，2 &lt;= n, m &lt;= 1000，1 &lt;= k &lt;= 1000。</p>
+<h3 id="10-问题描述"><a href="#10-问题描述" class="headerlink" title="10. 问题描述"></a>10. 问题描述</h3><p>小明要组织一台晚会，总共准备了 n 个节目。然后晚会的时间有限，他只能最终选择其中的 m 个节目。</p>
+<p>这 n 个节目是按照小明设想的顺序给定的，顺序不能改变。</p>
+<p>小明发现，观众对于晚上的喜欢程度与前几个节目的好看程度有非常大的关系，他希望选出的第一个节目尽可能好看，在此前提下希望第二个节目尽可能好看，依次类推。</p>
+<p>小明给每个节目定义了一个好看值，请你帮助小明选择出 m 个节目，满足他的要求。</p>
+<h4 id="输入格式-5"><a href="#输入格式-5" class="headerlink" title="输入格式"></a>输入格式</h4><p>输入的第一行包含两个整数 n, m ，表示节目的数量和要选择的数量。</p>
+<p>第二行包含 n 个整数，依次为每个节目的好看值。</p>
+<h4 id="输出格式-5"><a href="#输出格式-5" class="headerlink" title="输出格式"></a>输出格式</h4><p>输出一行包含 m 个整数，为选出的节目的好看值。</p>
+<h4 id="样例输入-4"><a href="#样例输入-4" class="headerlink" title="样例输入"></a>样例输入</h4><p>5 3<br>3 1 2 5 4</p>
+<h4 id="样例输出-4"><a href="#样例输出-4" class="headerlink" title="样例输出"></a>样例输出</h4><p>3 5 4</p>
+<h4 id="样例说明-2"><a href="#样例说明-2" class="headerlink" title="样例说明"></a>样例说明</h4><p>选择了第1, 4, 5个节目。</p>
+<h4 id="评测用例规模与约定-4"><a href="#评测用例规模与约定-4" class="headerlink" title="评测用例规模与约定"></a>评测用例规模与约定</h4><p>对于 30% 的评测用例，1 &lt;= n &lt;= 20；</p>
+<p>对于 60% 的评测用例，1 &lt;= n &lt;= 100；</p>
+<p>对于所有评测用例，1 &lt;= n &lt;= 100000，0 &lt;= 节目的好看值 &lt;= 100000。</p>
+
+    </div>
+
+    
+    
+    
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>Leo
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://leoleoasd.me/2020/03/16/lan-qiao-bei-2019-xiao-nei-mo-ni-ti-mu/" title="蓝桥杯2019校内模拟题目">http://leoleoasd.me/2020/03/16/lan-qiao-bei-2019-xiao-nei-mo-ni-ti-mu/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+        
+
+  <div class="followme">
+    <p>欢迎关注我的其它发布渠道</p>
+
+    <div class="social-list">
+
+            <div class="social-item">
+              <a target="_blank" class="social-link" href="/medias/wechat_channel.jpg">
+                <span class="icon">
+                  <i class="fa fa-wechat"></i>
+                </span>
+
+                <span class="label">WeChat</span>
+              </a>
+            </div>
+    </div>
+  </div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/OI/" rel="tag"># OI</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2020/03/16/cong-jie-gou-ti-zou-xiang-dui-xiang/" rel="prev" title="从结构体走向对象">
+      <i class="fa fa-chevron-left"></i> 从结构体走向对象
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2020/03/27/bu-er-yun-suan-fu-de-duan-lu/" rel="next" title="布尔运算符的短路">
+      布尔运算符的短路 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+    <div class="comments" id="gitalk-container"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-2"><a class="nav-link" href="#蓝桥杯北京工业大学模拟赛-2020-03-15"><span class="nav-number">1.</span> <span class="nav-text">蓝桥杯北京工业大学模拟赛 2020.03.15</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#1-问题描述"><span class="nav-number">1.1.</span> <span class="nav-text">1. 问题描述</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#答案提交"><span class="nav-number">1.1.1.</span> <span class="nav-text">答案提交</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#2-问题描述"><span class="nav-number">1.2.</span> <span class="nav-text">2. 问题描述</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#答案提交-1"><span class="nav-number">1.2.1.</span> <span class="nav-text">答案提交</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-问题描述"><span class="nav-number">1.3.</span> <span class="nav-text">3. 问题描述</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#答案提交-2"><span class="nav-number">1.3.1.</span> <span class="nav-text">答案提交</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#4-问题描述"><span class="nav-number">1.4.</span> <span class="nav-text">4. 问题描述</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#答案提交-3"><span class="nav-number">1.4.1.</span> <span class="nav-text">答案提交</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#5-问题描述"><span class="nav-number">1.5.</span> <span class="nav-text">5. 问题描述</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#输入格式"><span class="nav-number">1.5.1.</span> <span class="nav-text">输入格式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#输出格式"><span class="nav-number">1.5.2.</span> <span class="nav-text">输出格式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#样例输入"><span class="nav-number">1.5.3.</span> <span class="nav-text">样例输入</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#样例输出"><span class="nav-number">1.5.4.</span> <span class="nav-text">样例输出</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#评测用例规模与约定"><span class="nav-number">1.5.5.</span> <span class="nav-text">评测用例规模与约定</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#6-问题描述"><span class="nav-number">1.6.</span> <span class="nav-text">6. 问题描述</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#输入格式-1"><span class="nav-number">1.6.1.</span> <span class="nav-text">输入格式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#输出格式-1"><span class="nav-number">1.6.2.</span> <span class="nav-text">输出格式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#样例输入1"><span class="nav-number">1.6.3.</span> <span class="nav-text">样例输入1</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#样例输出2"><span class="nav-number">1.6.4.</span> <span class="nav-text">样例输出2</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#样例输入1-1"><span class="nav-number">1.6.5.</span> <span class="nav-text">样例输入1</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#样例输出2-1"><span class="nav-number">1.6.6.</span> <span class="nav-text">样例输出2</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#7-问题描述"><span class="nav-number">1.7.</span> <span class="nav-text">7. 问题描述</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#输入格式-2"><span class="nav-number">1.7.1.</span> <span class="nav-text">输入格式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#输出格式-2"><span class="nav-number">1.7.2.</span> <span class="nav-text">输出格式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#样例输入-1"><span class="nav-number">1.7.3.</span> <span class="nav-text">样例输入</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#样例输出-1"><span class="nav-number">1.7.4.</span> <span class="nav-text">样例输出</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#样例说明"><span class="nav-number">1.7.5.</span> <span class="nav-text">样例说明</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#评测用例规模与约定-1"><span class="nav-number">1.7.6.</span> <span class="nav-text">评测用例规模与约定</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#8-问题描述"><span class="nav-number">1.8.</span> <span class="nav-text">8. 问题描述</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#输入格式-3"><span class="nav-number">1.8.1.</span> <span class="nav-text">输入格式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#输出格式-3"><span class="nav-number">1.8.2.</span> <span class="nav-text">输出格式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#样例输入-2"><span class="nav-number">1.8.3.</span> <span class="nav-text">样例输入</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#样例输出-2"><span class="nav-number">1.8.4.</span> <span class="nav-text">样例输出</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#样例说明-1"><span class="nav-number">1.8.5.</span> <span class="nav-text">样例说明</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#评测用例规模与约定-2"><span class="nav-number">1.8.6.</span> <span class="nav-text">评测用例规模与约定</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#9-问题描述"><span class="nav-number">1.9.</span> <span class="nav-text">9. 问题描述</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#输入格式-4"><span class="nav-number">1.9.1.</span> <span class="nav-text">输入格式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#输出格式-4"><span class="nav-number">1.9.2.</span> <span class="nav-text">输出格式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#样例输入-3"><span class="nav-number">1.9.3.</span> <span class="nav-text">样例输入</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#样例输出-3"><span class="nav-number">1.9.4.</span> <span class="nav-text">样例输出</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#评测用例规模与约定-3"><span class="nav-number">1.9.5.</span> <span class="nav-text">评测用例规模与约定</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#10-问题描述"><span class="nav-number">1.10.</span> <span class="nav-text">10. 问题描述</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#输入格式-5"><span class="nav-number">1.10.1.</span> <span class="nav-text">输入格式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#输出格式-5"><span class="nav-number">1.10.2.</span> <span class="nav-text">输出格式</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#样例输入-4"><span class="nav-number">1.10.3.</span> <span class="nav-text">样例输入</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#样例输出-4"><span class="nav-number">1.10.4.</span> <span class="nav-text">样例输出</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#样例说明-2"><span class="nav-number">1.10.5.</span> <span class="nav-text">样例说明</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#评测用例规模与约定-4"><span class="nav-number">1.10.6.</span> <span class="nav-text">评测用例规模与约定</span></a></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Leo"
+      src="/medias/leo@8x.png">
+  <p class="site-author-name" itemprop="name">Leo</p>
+  <div class="site-description" itemprop="description">Yet another blog</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">39</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">32</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/leoleoasd" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;leoleoasd" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:i@leoleoasd.me" title="E-Mail → mailto:i@leoleoasd.me"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title">
+      <i class="fa fa-fw fa-link"></i>
+      友情链接
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://www.renjikai.com/" title="https:&#x2F;&#x2F;www.renjikai.com" rel="noopener" target="_blank">杰克部落</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.wevg.org/" title="https:&#x2F;&#x2F;www.wevg.org" rel="noopener" target="_blank">Vigorous Pro</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://blog.piggy.moe/" title="https:&#x2F;&#x2F;blog.piggy.moe" rel="noopener" target="_blank">Piggy</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://blog.valderfield.com/" title="https:&#x2F;&#x2F;blog.valderfield.com&#x2F;" rel="noopener" target="_blank">Colin</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://blog.skk.moe/" title="https:&#x2F;&#x2F;blog.skk.moe&#x2F;" rel="noopener" target="_blank">苏卡卡的有底洞</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://qaq.cat/" title="https:&#x2F;&#x2F;qaq.cat&#x2F;" rel="noopener" target="_blank">Balthild’s Blog</a>
+        </li>
+    </ul>
+  </div>
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Leo</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v4.2.1
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.7.1
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/pjax/pjax.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+  <script>
+var pjax = new Pjax({
+  selectors: [
+    'head title',
+    '#page-configurations',
+    '.content-wrap',
+    '.post-toc-wrap',
+    '#pjax'
+  ],
+  switches: {
+    '.post-toc-wrap': Pjax.switches.innerHTML
+  },
+  analytics: false,
+  cacheBust: false,
+  scrollTo : !CONFIG.bookmark.enable
+});
+
+window.addEventListener('pjax:success', () => {
+  document.querySelectorAll('script[pjax], script#page-configurations, #pjax script').forEach(element => {
+    var code = element.text || element.textContent || element.innerHTML || '';
+    var parent = element.parentNode;
+    parent.removeChild(element);
+    var script = document.createElement('script');
+    if (element.id) {
+      script.id = element.id;
+    }
+    if (element.className) {
+      script.className = element.className;
+    }
+    if (element.type) {
+      script.type = element.type;
+    }
+    if (element.src) {
+      script.src = element.src;
+      // Force synchronous loading of peripheral JS.
+      script.async = false;
+    }
+    if (element.getAttribute('pjax') !== null) {
+      script.setAttribute('pjax', '');
+    }
+    if (code !== '') {
+      script.appendChild(document.createTextNode(code));
+    }
+    parent.appendChild(script);
+  });
+  NexT.boot.refresh();
+  // Define Motion Sequence & Bootstrap Motion.
+  if (CONFIG.motion.enable) {
+    NexT.motion.integrator
+      .init()
+      .add(NexT.motion.middleWares.subMenu)
+      .add(NexT.motion.middleWares.postList)
+      .bootstrap();
+  }
+  NexT.utils.updateSidebarPosition();
+});
+</script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div id="pjax">
+  
+
+  
+
+
+  <script>
+    const heti = new Heti('.heti');
+    heti.autoSpacing(); // 自动进行中西文混排美化和标点挤压
+  </script>
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
+
+<script>
+NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
+    var gitalk = new Gitalk({
+      clientID    : '88c392c2c9081f351ae0',
+      clientSecret: '40c7d846bf7e66487a0fc35a4176a522bb723100',
+      repo        : 'blog',
+      owner       : 'leoleoasd',
+      admin       : ['leoleoasd'],
+      id          : '8e099a7d795137b4416765a233c11a6d',
+        language: 'zh-CN',
+      distractionFreeMode: true
+    });
+    gitalk.render('gitalk-container');
+  }, window.Gitalk);
+});
+</script>
+
+    </div>
+</body>
+</html>

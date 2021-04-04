@@ -1,0 +1,805 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=2">
+<meta name="theme-color" content="#222">
+<meta name="generator" content="Hexo 4.2.1">
+  <link rel="apple-touch-icon" sizes="180x180" href="/medias/leo@8x-1.png">
+  <link rel="icon" type="image/png" sizes="32x32" href="/medias/leo@8x.png">
+  <link rel="icon" type="image/png" sizes="16x16" href="/medias/leo@4x.png">
+  <link rel="mask-icon" href="/medias/leo@8x-1.png" color="#222">
+
+<link rel="stylesheet" href="/css/main.css">
+
+
+<link rel="stylesheet" href="/lib/font-awesome/css/font-awesome.min.css">
+
+<script id="hexo-configurations">
+    var NexT = window.NexT || {};
+    var CONFIG = {"hostname":"leoleoasd.me","root":"/","scheme":"Muse","version":"7.7.1","exturl":false,"sidebar":{"position":"left","display":"post","padding":18,"offset":12,"onmobile":false},"copycode":{"enable":false,"show_result":false,"style":null},"back2top":{"enable":true,"sidebar":false,"scrollpercent":false},"bookmark":{"enable":false,"color":"#222","save":"auto"},"fancybox":false,"mediumzoom":false,"lazyload":false,"pangu":false,"comments":{"style":"tabs","active":null,"storage":true,"lazyload":false,"nav":null},"algolia":{"hits":{"per_page":10},"labels":{"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}},"localsearch":{"enable":false,"trigger":"auto","top_n_per_article":1,"unescape":false,"preload":false},"motion":{"enable":true,"async":false,"transition":{"post_block":"fadeIn","post_header":"slideDownIn","post_body":"slideDownIn","coll_header":"slideLeftIn","sidebar":"slideUpIn"}},"path":"search.xml"};
+  </script>
+
+  <meta name="description" content="指针, 数组, 指针数组, 和数组指针这里, 更多的并不是教给大家什么是数组, 什么是指针数组. 更多的, 是教给大家理解数组和指针的本质. 指针详见&#x2F;2019&#x2F;11&#x2F;09&#x2F;zhi-zhen-shi-sha&#x2F; 数组一维数组定义:元素类型 数字名称[数组大小]; 使用:对于定义如下的一个数组: int data[10] &#x3D; {0}; 使用元素:data[i] &#x3D; 1; 使用名字:data 是 数组”">
+<meta property="og:type" content="article">
+<meta property="og:title" content="指针 数组 指针数组和数组指针">
+<meta property="og:url" content="http://leoleoasd.me/2019/11/10/zhi-zhen-shu-zu-zhi-zhen-shu-zu-he-shu-zu-zhi-zhen/index.html">
+<meta property="og:site_name" content="Leo">
+<meta property="og:description" content="指针, 数组, 指针数组, 和数组指针这里, 更多的并不是教给大家什么是数组, 什么是指针数组. 更多的, 是教给大家理解数组和指针的本质. 指针详见&#x2F;2019&#x2F;11&#x2F;09&#x2F;zhi-zhen-shi-sha&#x2F; 数组一维数组定义:元素类型 数字名称[数组大小]; 使用:对于定义如下的一个数组: int data[10] &#x3D; {0}; 使用元素:data[i] &#x3D; 1; 使用名字:data 是 数组”">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2019-11-10T10:59:09.000Z">
+<meta property="article:modified_time" content="2021-04-01T11:25:56.935Z">
+<meta property="article:author" content="Leo">
+<meta property="article:tag" content="公众号同步推送">
+<meta name="twitter:card" content="summary">
+
+<link rel="canonical" href="http://leoleoasd.me/2019/11/10/zhi-zhen-shu-zu-zhi-zhen-shu-zu-he-shu-zu-zhi-zhen/">
+
+
+<script id="page-configurations">
+  // https://hexo.io/docs/variables.html
+  CONFIG.page = {
+    sidebar: "",
+    isHome: false,
+    isPost: true
+  };
+</script>
+
+  <title>指针 数组 指针数组和数组指针 | Leo</title>
+  
+    <script async src="https://www.googletagmanager.com/gtag/js?id=UA-141894777-1"></script>
+    <script pjax>
+      if (CONFIG.hostname === location.hostname) {
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+        gtag('config', 'UA-141894777-1');
+      }
+    </script>
+
+
+
+
+
+
+  <noscript>
+  <style>
+  .use-motion .brand,
+  .use-motion .menu-item,
+  .sidebar-inner,
+  .use-motion .post-block,
+  .use-motion .pagination,
+  .use-motion .comments,
+  .use-motion .post-header,
+  .use-motion .post-body,
+  .use-motion .collection-header { opacity: initial; }
+
+  .use-motion .site-title,
+  .use-motion .site-subtitle {
+    opacity: initial;
+    top: initial;
+  }
+
+  .use-motion .logo-line-before i { left: initial; }
+  .use-motion .logo-line-after i { right: initial; }
+  </style>
+</noscript>
+
+  <link rel="stylesheet" href="//unpkg.com/heti/umd/heti.min.css">
+  <script src="//unpkg.com/heti/umd/heti-addon.min.js"></script>
+<link rel="stylesheet" href="/css/prism-hopscotch.css" type="text/css">
+<link rel="stylesheet" href="/css/prism-line-numbers.css" type="text/css"><style>mjx-container[jax="SVG"] {
+  direction: ltr;
+}
+
+mjx-container[jax="SVG"] > svg {
+  overflow: visible;
+}
+
+mjx-container[jax="SVG"] > svg a {
+  fill: blue;
+  stroke: blue;
+}
+
+mjx-container[jax="SVG"][display="true"] {
+  display: block;
+  text-align: center;
+  margin: 1em 0;
+}
+
+mjx-container[jax="SVG"][justify="left"] {
+  text-align: left;
+}
+
+mjx-container[jax="SVG"][justify="right"] {
+  text-align: right;
+}
+
+g[data-mml-node="merror"] > g {
+  fill: red;
+  stroke: red;
+}
+
+g[data-mml-node="merror"] > rect[data-background] {
+  fill: yellow;
+  stroke: none;
+}
+
+g[data-mml-node="mtable"] > line[data-line] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > rect[data-frame] {
+  stroke-width: 70px;
+  fill: none;
+}
+
+g[data-mml-node="mtable"] > .mjx-dashed {
+  stroke-dasharray: 140;
+}
+
+g[data-mml-node="mtable"] > .mjx-dotted {
+  stroke-linecap: round;
+  stroke-dasharray: 0,140;
+}
+
+g[data-mml-node="mtable"] > svg {
+  overflow: visible;
+}
+
+[jax="SVG"] mjx-tool {
+  display: inline-block;
+  position: relative;
+  width: 0;
+  height: 0;
+}
+
+[jax="SVG"] mjx-tool > mjx-tip {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+mjx-tool > mjx-tip {
+  display: inline-block;
+  padding: .2em;
+  border: 1px solid #888;
+  font-size: 70%;
+  background-color: #F8F8F8;
+  color: black;
+  box-shadow: 2px 2px 5px #AAAAAA;
+}
+
+g[data-mml-node="maction"][data-toggle] {
+  cursor: pointer;
+}
+
+mjx-status {
+  display: block;
+  position: fixed;
+  left: 1em;
+  bottom: 1em;
+  min-width: 25%;
+  padding: .2em .4em;
+  border: 1px solid #888;
+  font-size: 90%;
+  background-color: #F8F8F8;
+  color: black;
+}
+
+foreignObject[data-mjx-xml] {
+  font-family: initial;
+  line-height: normal;
+  overflow: visible;
+}
+
+.MathJax path {
+  stroke-width: 3;
+}
+
+mjx-container[display="true"] {
+  overflow: auto hidden;
+}
+
+mjx-container[display="true"] + br {
+  display: none;
+}
+</style></head>
+
+<body itemscope itemtype="http://schema.org/WebPage">
+  <div class="container use-motion">
+    <div class="headband"></div>
+
+    <header class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-container">
+  <div class="site-meta">
+
+    <div>
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">Leo</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+        <p class="site-subtitle">Leo's cottage.</p>
+  </div>
+
+  <div class="site-nav-toggle">
+    <div class="toggle" aria-label="切换导航栏">
+      <span class="toggle-line toggle-line-first"></span>
+      <span class="toggle-line toggle-line-middle"></span>
+      <span class="toggle-line toggle-line-last"></span>
+    </div>
+  </div>
+</div>
+
+
+<nav class="site-nav">
+  
+  <ul id="menu" class="menu">
+        <li class="menu-item menu-item-home">
+
+    <a href="/" rel="section"><i class="fa fa-fw fa-home"></i>首页</a>
+
+  </li>
+        <li class="menu-item menu-item-tags">
+
+    <a href="/tags/" rel="section"><i class="fa fa-fw fa-tags"></i>标签</a>
+
+  </li>
+        <li class="menu-item menu-item-categories">
+
+    <a href="/categories/" rel="section"><i class="fa fa-fw fa-th"></i>分类</a>
+
+  </li>
+        <li class="menu-item menu-item-archives">
+
+    <a href="/archives/" rel="section"><i class="fa fa-fw fa-archive"></i>归档</a>
+
+  </li>
+        <li class="menu-item menu-item-about">
+
+    <a href="/about/" rel="section"><i class="fa fa-fw fa-user"></i>关于</a>
+
+  </li>
+  </ul>
+
+</nav>
+</div>
+    </header>
+
+    
+  <div class="back-to-top">
+    <i class="fa fa-arrow-up"></i>
+    <span>0%</span>
+  </div>
+
+
+    <main class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          
+
+          <div class="content">
+            
+
+  <div class="posts-expand">
+      
+  
+  
+  <article itemscope itemtype="http://schema.org/Article" class="post-block " lang="zh-CN">
+    <link itemprop="mainEntityOfPage" href="http://leoleoasd.me/2019/11/10/zhi-zhen-shu-zu-zhi-zhen-shu-zu-he-shu-zu-zhi-zhen/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="image" content="/medias/leo@8x.png">
+      <meta itemprop="name" content="Leo">
+      <meta itemprop="description" content="Yet another blog">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Leo">
+    </span>
+      <header class="post-header">
+        <h1 class="post-title" itemprop="name headline">
+          指针 数组 指针数组和数组指针
+        </h1>
+
+        <div class="post-meta">
+            <span class="post-meta-item">
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              <span class="post-meta-item-text">发表于</span>
+
+              <time title="创建时间：2019-11-10 18:59:09" itemprop="dateCreated datePublished" datetime="2019-11-10T18:59:09+08:00">2019-11-10</time>
+            </span>
+              <span class="post-meta-item">
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-calendar-check-o"></i>
+                </span>
+                <span class="post-meta-item-text">更新于</span>
+                <time title="修改时间：2021-04-01 19:25:56" itemprop="dateModified" datetime="2021-04-01T19:25:56+08:00">2021-04-01</time>
+              </span>
+
+          
+
+        </div>
+      </header>
+
+    
+    
+    
+    <div class="post-body heti" itemprop="articleBody">
+
+      
+        <h1 id="指针-数组-指针数组-和数组指针"><a href="#指针-数组-指针数组-和数组指针" class="headerlink" title="指针, 数组, 指针数组, 和数组指针"></a>指针, 数组, 指针数组, 和数组指针</h1><p>这里, 更多的并不是教给大家什么是数组, 什么是指针数组. 更多的, 是教给大家理解数组和指针的本质.</p>
+<h3 id="指针"><a href="#指针" class="headerlink" title="指针"></a>指针</h3><p>详见<a href="%E8%BF%99%E9%87%8C">/2019/11/09/zhi-zhen-shi-sha/</a></p>
+<h3 id="数组"><a href="#数组" class="headerlink" title="数组"></a>数组</h3><h4 id="一维数组"><a href="#一维数组" class="headerlink" title="一维数组"></a>一维数组</h4><h5 id="定义"><a href="#定义" class="headerlink" title="定义:"></a>定义:</h5><pre class="line-numbers language-cpp"><code class="language-cpp">元素类型 数字名称<span class="token punctuation">[</span>数组大小<span class="token punctuation">]</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h5 id="使用"><a href="#使用" class="headerlink" title="使用:"></a>使用:</h5><p>对于定义如下的一个数组:</p>
+<pre class="line-numbers language-cpp"><code class="language-cpp"><span class="token keyword">int</span> data<span class="token punctuation">[</span><span class="token number">10</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token number">0</span><span class="token punctuation">}</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h5 id="使用元素"><a href="#使用元素" class="headerlink" title="使用元素:"></a>使用元素:</h5><pre class="line-numbers language-cpp"><code class="language-cpp">data<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h5 id="使用名字"><a href="#使用名字" class="headerlink" title="使用名字:"></a>使用名字:</h5><p>data 是 数组”首元素”的指针</p>
+<pre class="line-numbers language-cpp"><code class="language-cpp"><span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%p"</span><span class="token punctuation">,</span> data<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token function">printf</span><span class="token punctuation">(</span><span class="token string">"%p"</span><span class="token punctuation">,</span> <span class="token operator">&amp;</span>data<span class="token punctuation">[</span><span class="token number">0</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<p>注意, data是”右值”, 不可赋值.</p>
+<p><del>不知道右值是啥的快去看上一篇推送</del></p>
+<h5 id="地址运算"><a href="#地址运算" class="headerlink" title="地址运算:"></a>地址运算:</h5><p><code>data + 1</code>在数值上等于<code>data</code>的值+4. (int占4个字节)</p>
+<p>复习: 指针+1, 实际指向的地址加了<code>sizeof(指向的类型)</code>.</p>
+<h4 id="二维数组"><a href="#二维数组" class="headerlink" title="二维数组"></a>二维数组</h4><p>二维数组就是”数组的数组”. 如何理解这一点呢?</p>
+<h5 id="二维数组的定义"><a href="#二维数组的定义" class="headerlink" title="二维数组的定义:"></a>二维数组的定义:</h5><pre class="line-numbers language-cpp"><code class="language-cpp"><span class="token keyword">int</span> data<span class="token punctuation">[</span><span class="token number">5</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token number">10</span><span class="token punctuation">]</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>上述代码定义了一个数组, 这个数组的元素是”10个int类型构成的数组”. 如何理解? 数组定义的阅读要”从里向外阅读”. 例如:</p>
+<p>int <strong>data[5]</strong>[10];</p>
+<p>定义一个数组, 名字叫data, 大小为5</p>
+<p><strong>int</strong> data[5]<strong>[10]</strong>;</p>
+<p>数组的元素的类型是<code>int [10]</code>, 也就是大小为10的int数组.</p>
+<blockquote>
+<p>数据类型: 如果不好理解 int [10] 是一个类型, 只需要记住 去掉定义变量时候的变量名字, 剩下的东西就是一个类型. 如:</p>
+<p>对于 int data[10], 去掉data后剩下的部分int [10] 就是变量类型.</p>
+<p>同理, 下面要讲到的 int (*)[10] 也是变量类型</p>
+</blockquote>
+<p>二维数组元素的使用和一位数组基本相同, 这里不再赘述.</p>
+<h5 id="二维数组的地址的使用"><a href="#二维数组的地址的使用" class="headerlink" title="二维数组的地址的使用:"></a>二维数组的地址的使用:</h5><p>小问答: 对于定义如下的数组:</p>
+<pre class="line-numbers language-cpp"><code class="language-cpp"><span class="token keyword">int</span> data<span class="token punctuation">[</span><span class="token number">10</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token number">20</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token number">0</span><span class="token punctuation">}</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>data+1的地址数值上等于多少?</p>
+<pre class="line-numbers language-cpp"><code class="language-cpp">A<span class="token punctuation">.</span> data <span class="token operator">+</span> <span class="token function">4</span><span class="token punctuation">(</span>数值上<span class="token punctuation">)</span>
+B<span class="token punctuation">.</span> data <span class="token operator">+</span> <span class="token function">40</span><span class="token punctuation">(</span>数值上<span class="token punctuation">)</span>
+C<span class="token punctuation">.</span> data <span class="token operator">+</span> <span class="token function">80</span><span class="token punctuation">(</span>数值上<span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<pre class="line-numbers language-cpp"><code class="language-cpp">左滑查看答案 <span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">></span> 由于data是<span class="token string">"元素为int [20]"</span>的数组<span class="token punctuation">,</span> 所以 <span class="token keyword">sizeof</span><span class="token punctuation">(</span>data的元素<span class="token punctuation">)</span> 是 <span class="token number">20</span><span class="token operator">*</span><span class="token number">4</span> <span class="token operator">=</span> <span class="token number">80</span><span class="token punctuation">,</span> 所以 data<span class="token operator">+</span><span class="token number">1</span> 的地址数值上等于 data <span class="token operator">+</span> <span class="token number">80</span><span class="token punctuation">.</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>复习: 对于如上定义, data 的元素的类型为”int [20]”. 实际上, 如果通过下标计算地址, 应该如下计算:</p>
+<pre><code>data[i][j] == *(data + i) + j;</code></pre>
+<p>如何理解上面的代码? *(data + i) 的类型又是什么?</p>
+<pre class="line-numbers language-cpp"><code class="language-cpp">左滑查看答案 <span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">></span> data的元素为 <span class="token keyword">int</span><span class="token punctuation">[</span><span class="token number">20</span><span class="token punctuation">]</span><span class="token punctuation">,</span> 因此 <span class="token operator">*</span><span class="token punctuation">(</span>data <span class="token operator">+</span> i<span class="token punctuation">)</span> 是 data数组的第i个元素<span class="token punctuation">,</span> 也就是第i个大小为<span class="token number">20</span>的<span class="token keyword">int</span>数组<span class="token punctuation">.</span>
+左滑查看答案 <span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">></span> data<span class="token punctuation">[</span>i<span class="token punctuation">]</span><span class="token punctuation">[</span>j<span class="token punctuation">]</span> 是data中的第i个元素的第j个元素<span class="token punctuation">.</span> <span class="token punctuation">(</span>data的第i个元素是一个一维数组<span class="token punctuation">.</span><span class="token punctuation">)</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<p>(复习: *运算符是”根据地址取所在那个地址的元素”)</p>
+<p>通过上面的练习, 相信大家也理解了”二维数组就是元素是数组的数组”. </p>
+<p>这样子, 也就很容易能理解为什么二维数组作为参数要传入”第二维”的大小了. 对于以下代码:</p>
+<pre class="line-numbers language-cpp"><code class="language-cpp"><span class="token keyword">int</span> <span class="token function">func1</span><span class="token punctuation">(</span><span class="token keyword">int</span> data<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+这个函数的参数data是一个数组<span class="token punctuation">,</span> 元素是<span class="token keyword">int</span>
+并不需要知道数组的大小
+<span class="token punctuation">}</span>
+<span class="token keyword">int</span> <span class="token function">func2</span><span class="token punctuation">(</span><span class="token keyword">int</span> data<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token number">20</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+这个函数的参数data是一个数组<span class="token punctuation">,</span> 元素是 <span class="token keyword">int</span><span class="token punctuation">[</span><span class="token number">20</span><span class="token punctuation">]</span>
+因为需要知道元素的类型<span class="token punctuation">,</span> 因此必须知道数组第二维的大小<span class="token punctuation">.</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h4 id="多维数组"><a href="#多维数组" class="headerlink" title="多维数组"></a>多维数组</h4><p>多维数组的理解和二维数组相同, 比如三维数组是”元素为二维数组的数组”. 因为并不常用, 这里不再赘述.</p>
+<h3 id="数组作为函数参数"><a href="#数组作为函数参数" class="headerlink" title="数组作为函数参数"></a>数组作为函数参数</h3><p>首先, 需要说明的一点是, <strong>数组作为函数参数的时候, 对于被调用的函数, 参数是一个指针</strong>. 无论传入什么数组, 对于被调用者, 参数的类型都是一个指针. 因此, 以下几个函数原型是等价的:</p>
+<pre class="line-numbers language-cpp"><code class="language-cpp"><span class="token keyword">int</span> <span class="token function">foo</span><span class="token punctuation">(</span><span class="token keyword">int</span> <span class="token operator">*</span>a<span class="token punctuation">,</span> <span class="token keyword">int</span> n<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">int</span> <span class="token function">foo</span><span class="token punctuation">(</span><span class="token keyword">int</span> a<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token keyword">int</span> n<span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">int</span> <span class="token function">foo</span><span class="token punctuation">(</span><span class="token keyword">int</span> a<span class="token punctuation">[</span><span class="token number">10</span><span class="token punctuation">]</span><span class="token punctuation">,</span> <span class="token keyword">int</span> n<span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span></span></code></pre>
+<p>而同时, 对于被调用的函数, 参数永远是一个指针, 因此对于上面的第三个函数原型, 传入一个类型为<code>int[20]</code>的数组也是可以编译通过的.</p>
+<p>也正因为这个原因, 被调用的函数没有办法知道传入的数组的大小, 也没有办法限制传入的数组的大小, 因此只能显式的传入另一个参数<code>n</code>作为数组大小.</p>
+<p>同理, 参数是一个指针, 需要知道指针指向的类型是什么. 这一点也同样可以理解为什么二位数组传参的时候要指定第二维的大小:</p>
+<pre class="line-numbers language-cpp"><code class="language-cpp"><span class="token keyword">int</span> <span class="token function">func2</span><span class="token punctuation">(</span><span class="token keyword">int</span> data<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token number">20</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+<span class="token keyword">int</span> <span class="token function">func2</span><span class="token punctuation">(</span><span class="token keyword">int</span> <span class="token punctuation">(</span><span class="token operator">*</span><span class="token punctuation">)</span>data<span class="token punctuation">[</span><span class="token number">20</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<p>这两种声明等价. 第二种声明的参数类型是”指向一个int[20]”的指针(也就是下面会讲到的数组指针), 显然, 需要知道指向的数组多大, 因此必须说明第二维的大小.</p>
+<h3 id="指针数组"><a href="#指针数组" class="headerlink" title="指针数组"></a>指针数组</h3><p>指针数组, 从字面意思来看, 就是元素是指针的数组.</p>
+<h4 id="定义-1"><a href="#定义-1" class="headerlink" title="定义:"></a>定义:</h4><pre class="line-numbers language-cpp"><code class="language-cpp"><span class="token keyword">int</span> <span class="token operator">*</span>data<span class="token punctuation">[</span><span class="token number">10</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token constant">NULL</span><span class="token punctuation">}</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>注意, 一定要初始化, 否则会有问题.</p>
+<h4 id="使用-1"><a href="#使用-1" class="headerlink" title="使用:"></a>使用:</h4><pre class="line-numbers language-cpp"><code class="language-cpp"><span class="token keyword">for</span><span class="token punctuation">(</span><span class="token keyword">int</span> i <span class="token operator">=</span> <span class="token number">0</span><span class="token punctuation">;</span> i <span class="token operator">&lt;</span> <span class="token number">10</span><span class="token punctuation">;</span> <span class="token operator">++</span> i<span class="token punctuation">)</span><span class="token punctuation">{</span>
+    data<span class="token punctuation">[</span>i<span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">(</span><span class="token keyword">int</span><span class="token operator">*</span><span class="token punctuation">)</span><span class="token function">malloc</span><span class="token punctuation">(</span><span class="token keyword">sizeof</span><span class="token punctuation">(</span><span class="token keyword">int</span><span class="token punctuation">)</span> <span class="token operator">*</span> <span class="token number">10</span><span class="token punctuation">)</span><span class="token punctuation">;</span>
+    还记得为啥要<span class="token punctuation">(</span><span class="token keyword">int</span><span class="token operator">*</span><span class="token punctuation">)</span>吗<span class="token operator">?</span>
+<span class="token punctuation">}</span>
+data<span class="token punctuation">[</span><span class="token number">1</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token number">2</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token number">1</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span><span></span><span></span><span></span></span></code></pre>
+<h4 id="阅读"><a href="#阅读" class="headerlink" title="阅读:"></a>阅读:</h4><p>对于上面的定义和初始化, <code>data</code>是指针数组的名字, 也就是指向指针数组首元素的指针. (指针的指针). <code>data[i]</code> 是<code>data</code>这一个数组的第i个元素, 也就是一个指向int的指针. 指针可以当成数组来使用, <code>data[i][j]</code> 和 <code>*(data[i] + j)</code>是等价的.</p>
+<p>经过上述代码创建的一个指针数组data的使用和<code>int data[10][10]</code>基本相同, 区别在于后者保证数组和数组之间的内存地址是连续的. <code>data[0][9]</code> 和 <code>data[1][0]</code> 是连续的, 而如果使用指针数组方式创建的data, 不能保证 <code>data[0][9]</code> 和 <code>data[1][0]</code> 在内存上连续.</p>
+<h3 id="数组指针"><a href="#数组指针" class="headerlink" title="数组指针"></a>数组指针</h3><p>数组指针, 从字面意思来看就是”指向数组的指针”. </p>
+<h4 id="定义-2"><a href="#定义-2" class="headerlink" title="定义"></a>定义</h4><pre class="line-numbers language-cpp"><code class="language-cpp"><span class="token keyword">int</span> <span class="token function">data</span><span class="token punctuation">(</span><span class="token operator">*</span><span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token number">10</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token constant">NULL</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>上述代码定义了一个指向长度为10的int数组(int [10])的指针.</p>
+<h4 id="使用-2"><a href="#使用-2" class="headerlink" title="使用"></a>使用</h4><p>一般, 我们并不会使用到数组指针. 当且仅当一个情况下我们会在我们不知不觉的时候使用数组指针:</p>
+<pre class="line-numbers language-cpp"><code class="language-cpp"><span class="token keyword">int</span> <span class="token function">func</span><span class="token punctuation">(</span><span class="token keyword">int</span> data<span class="token punctuation">[</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token number">20</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">{</span>
+<span class="token punctuation">}</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<p>前面提到过, 数组作为参数传入函数的时候, 对于被调用的函数参数就是指针. 因此, 这里参数是一个”元素为<code>int[20]</code>“的数组(数组的数组), 因此, 在函数内部, data实际上就是一个”指向<code>int[20]</code>“的指针(<code>int (*)[20]</code>).</p>
+<p>一般并不需要使用数组指针的性质, 当编译器报错有<code>int (*)[20]</code>相关的东西时, 知道这是一个指向数组的指针即可.</p>
+<hr>
+<h3 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h3><h4 id="数组指针和指针数组的定义特别相似"><a href="#数组指针和指针数组的定义特别相似" class="headerlink" title="数组指针和指针数组的定义特别相似."></a>数组指针和指针数组的定义特别相似.</h4><pre class="line-numbers language-cpp"><code class="language-cpp"><span class="token keyword">int</span> <span class="token operator">*</span>data<span class="token punctuation">[</span><span class="token number">10</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token punctuation">{</span><span class="token constant">NULL</span><span class="token punctuation">}</span><span class="token punctuation">;</span> 
+<span class="token keyword">int</span> <span class="token punctuation">(</span><span class="token operator">*</span><span class="token punctuation">)</span>data1<span class="token punctuation">[</span><span class="token number">10</span><span class="token punctuation">]</span> <span class="token operator">=</span> <span class="token constant">NULL</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<p>上述代码中, <code>data</code>是指针数组(指针的数组), <code>data1</code>是数组指针(数组的指针)</p>
+<h4 id="不要对数组和指针使用sizeof"><a href="#不要对数组和指针使用sizeof" class="headerlink" title="不要对数组和指针使用sizeof."></a>不要对数组和指针使用sizeof.</h4><p>上面提到过, 对于被调用的函数, 数组参数实际上就是一个指针, 在函数内部对数组进行<code>sizeof</code>获取到的其实是指针占用的内存的大小(4字节或8字节). 同时, 对数组和指针使用<code>sizeof</code>会导致各种神奇的行为, 因此尽量不要对数组和指针使用<code>sizeof</code>. 当且仅当如<code>malloc(10 * sizeof(int))</code>时使用sizeof.</p>
+<hr>
+<h3 id="小测验"><a href="#小测验" class="headerlink" title="小测验"></a>小测验</h3><pre class="line-numbers language-cpp"><code class="language-cpp"><span class="token keyword">int</span> data<span class="token punctuation">[</span><span class="token number">10</span><span class="token punctuation">]</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>上述代码中, data的类型是?</p>
+<pre><code>左滑查看答案 ----------------------------------------&gt; int*</code></pre>
+<hr>
+<pre class="line-numbers language-cpp"><code class="language-cpp"><span class="token keyword">int</span> <span class="token punctuation">(</span><span class="token operator">*</span><span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token number">5</span><span class="token punctuation">]</span>
+<span class="token keyword">int</span> <span class="token operator">*</span><span class="token punctuation">[</span><span class="token number">5</span><span class="token punctuation">]</span><span aria-hidden="true" class="line-numbers-rows"><span></span><span></span></span></code></pre>
+<p>上述两个类型中, 哪个是数组指针, 哪个是指针数组?</p>
+<p>(复习: 定义变量的语句去掉变量名字剩下的部分就是变量类型. 如<code>int *data[5]</code>去掉<code>data</code>后剩下的<code>int *[5]</code> 是一个类型.)</p>
+<pre class="line-numbers language-cpp"><code class="language-cpp">左滑查看答案 <span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">></span>  前者是数组指针<span class="token punctuation">,</span> 后者是指针数组<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<hr>
+<pre class="line-numbers language-cpp"><code class="language-cpp"><span class="token keyword">int</span> data<span class="token punctuation">[</span><span class="token number">5</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token number">5</span><span class="token punctuation">]</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>上述代码中, data的类型是?</p>
+<pre class="line-numbers language-cpp"><code class="language-cpp">左滑查看答案 <span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">></span> <span class="token keyword">int</span> <span class="token punctuation">(</span><span class="token operator">*</span><span class="token punctuation">)</span><span class="token punctuation">[</span><span class="token number">5</span><span class="token punctuation">]</span><span class="token punctuation">,</span> 也就是指向 <span class="token keyword">int</span><span class="token punctuation">[</span><span class="token number">5</span><span class="token punctuation">]</span> 的指针<span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<hr>
+<pre class="line-numbers language-cpp"><code class="language-cpp"><span class="token keyword">int</span> data<span class="token punctuation">[</span><span class="token number">10</span><span class="token punctuation">]</span><span class="token punctuation">[</span><span class="token number">20</span><span class="token punctuation">]</span><span class="token punctuation">;</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<p>data+1的值 和 data的值 在数值上差多少?</p>
+<pre class="line-numbers language-cpp"><code class="language-cpp">左滑查看答案 <span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">--</span><span class="token operator">></span> 差一个 <span class="token keyword">sizeof</span><span class="token punctuation">(</span><span class="token keyword">int</span> <span class="token punctuation">[</span><span class="token number">20</span><span class="token punctuation">]</span><span class="token punctuation">)</span><span class="token punctuation">,</span> 也就是<span class="token number">80</span>字节<span class="token punctuation">.</span><span aria-hidden="true" class="line-numbers-rows"><span></span></span></code></pre>
+<h3 id="鸣谢"><a href="#鸣谢" class="headerlink" title="鸣谢:"></a>鸣谢:</h3><p>感谢云朵学长对本人不厌其烦的教导.</p>
+<p>感谢优秀的Z同学在我找C语言文档时慷慨提供的C Primer Plus.</p>
+<p>感谢我的舍友以及另一位优秀的Z同学的审稿.</p>
+<p>(你居然看到了这里, 那就说一下吧). 有一个很常见的, 数组名字作为参数同时<strong>不传入数组大小</strong>的使用情景, 同学们知道是什么吗?</p>
+<p>字符串相关函数. gets, puts, strlen, scanf等函数均只接受字符串名字作为参数, 他们是怎么获取字符串长度信息的呢?</p>
+<p><del>明天再发</del></p>
+
+    </div>
+
+    
+    
+    
+        
+
+<div>
+<ul class="post-copyright">
+  <li class="post-copyright-author">
+    <strong>本文作者： </strong>Leo
+  </li>
+  <li class="post-copyright-link">
+    <strong>本文链接：</strong>
+    <a href="http://leoleoasd.me/2019/11/10/zhi-zhen-shu-zu-zhi-zhen-shu-zu-he-shu-zu-zhi-zhen/" title="指针 数组 指针数组和数组指针">http://leoleoasd.me/2019/11/10/zhi-zhen-shu-zu-zhi-zhen-shu-zu-he-shu-zu-zhi-zhen/</a>
+  </li>
+  <li class="post-copyright-license">
+    <strong>版权声明： </strong>本博客所有文章除特别声明外，均采用 <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" rel="noopener" target="_blank"><i class="fa fa-fw fa-creative-commons"></i>BY-NC-SA</a> 许可协议。转载请注明出处！
+  </li>
+</ul>
+</div>
+
+        
+
+  <div class="followme">
+    <p>欢迎关注我的其它发布渠道</p>
+
+    <div class="social-list">
+
+            <div class="social-item">
+              <a target="_blank" class="social-link" href="/medias/wechat_channel.jpg">
+                <span class="icon">
+                  <i class="fa fa-wechat"></i>
+                </span>
+
+                <span class="label">WeChat</span>
+              </a>
+            </div>
+    </div>
+  </div>
+
+
+      <footer class="post-footer">
+          <div class="post-tags">
+              <a href="/tags/%E5%85%AC%E4%BC%97%E5%8F%B7%E5%90%8C%E6%AD%A5%E6%8E%A8%E9%80%81/" rel="tag"># 公众号同步推送</a>
+          </div>
+
+        
+
+
+        
+    <div class="post-nav">
+      <div class="post-nav-item">
+    <a href="/2019/11/09/c-yu-c-de-qu-bie/" rel="prev" title="C++与C的区别">
+      <i class="fa fa-chevron-left"></i> C++与C的区别
+    </a></div>
+      <div class="post-nav-item">
+    <a href="/2019/11/12/zi-fu-chuan-zi-fu-shu-zu-zi-fu-zhi-zhen/" rel="next" title="字符串,字符数组,字符指针">
+      字符串,字符数组,字符指针 <i class="fa fa-chevron-right"></i>
+    </a></div>
+    </div>
+      </footer>
+    
+  </article>
+  
+  
+  
+
+  </div>
+
+
+          </div>
+          
+    <div class="comments" id="gitalk-container"></div>
+
+<script>
+  window.addEventListener('tabs:register', () => {
+    let activeClass = CONFIG.comments.activeClass;
+    if (CONFIG.comments.storage) {
+      activeClass = localStorage.getItem('comments_active') || activeClass;
+    }
+    if (activeClass) {
+      let activeTab = document.querySelector(`a[href="#comment-${activeClass}"]`);
+      if (activeTab) {
+        activeTab.click();
+      }
+    }
+  });
+  if (CONFIG.comments.storage) {
+    window.addEventListener('tabs:click', event => {
+      if (!event.target.matches('.tabs-comment .tab-content .tab-pane')) return;
+      let commentClass = event.target.classList[1];
+      localStorage.setItem('comments_active', commentClass);
+    });
+  }
+</script>
+
+        </div>
+          
+  
+  <div class="toggle sidebar-toggle">
+    <span class="toggle-line toggle-line-first"></span>
+    <span class="toggle-line toggle-line-middle"></span>
+    <span class="toggle-line toggle-line-last"></span>
+  </div>
+
+  <aside class="sidebar">
+    <div class="sidebar-inner">
+
+      <ul class="sidebar-nav motion-element">
+        <li class="sidebar-nav-toc">
+          文章目录
+        </li>
+        <li class="sidebar-nav-overview">
+          站点概览
+        </li>
+      </ul>
+
+      <!--noindex-->
+      <div class="post-toc-wrap sidebar-panel">
+          <div class="post-toc motion-element"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#指针-数组-指针数组-和数组指针"><span class="nav-number">1.</span> <span class="nav-text">指针, 数组, 指针数组, 和数组指针</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#指针"><span class="nav-number">1.0.1.</span> <span class="nav-text">指针</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数组"><span class="nav-number">1.0.2.</span> <span class="nav-text">数组</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#一维数组"><span class="nav-number">1.0.2.1.</span> <span class="nav-text">一维数组</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#定义"><span class="nav-number">1.0.2.1.1.</span> <span class="nav-text">定义:</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#使用"><span class="nav-number">1.0.2.1.2.</span> <span class="nav-text">使用:</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#使用元素"><span class="nav-number">1.0.2.1.3.</span> <span class="nav-text">使用元素:</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#使用名字"><span class="nav-number">1.0.2.1.4.</span> <span class="nav-text">使用名字:</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#地址运算"><span class="nav-number">1.0.2.1.5.</span> <span class="nav-text">地址运算:</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#二维数组"><span class="nav-number">1.0.2.2.</span> <span class="nav-text">二维数组</span></a><ol class="nav-child"><li class="nav-item nav-level-5"><a class="nav-link" href="#二维数组的定义"><span class="nav-number">1.0.2.2.1.</span> <span class="nav-text">二维数组的定义:</span></a></li><li class="nav-item nav-level-5"><a class="nav-link" href="#二维数组的地址的使用"><span class="nav-number">1.0.2.2.2.</span> <span class="nav-text">二维数组的地址的使用:</span></a></li></ol></li><li class="nav-item nav-level-4"><a class="nav-link" href="#多维数组"><span class="nav-number">1.0.2.3.</span> <span class="nav-text">多维数组</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数组作为函数参数"><span class="nav-number">1.0.3.</span> <span class="nav-text">数组作为函数参数</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#指针数组"><span class="nav-number">1.0.4.</span> <span class="nav-text">指针数组</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#定义-1"><span class="nav-number">1.0.4.1.</span> <span class="nav-text">定义:</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#使用-1"><span class="nav-number">1.0.4.2.</span> <span class="nav-text">使用:</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#阅读"><span class="nav-number">1.0.4.3.</span> <span class="nav-text">阅读:</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#数组指针"><span class="nav-number">1.0.5.</span> <span class="nav-text">数组指针</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#定义-2"><span class="nav-number">1.0.5.1.</span> <span class="nav-text">定义</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#使用-2"><span class="nav-number">1.0.5.2.</span> <span class="nav-text">使用</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#注意"><span class="nav-number">1.0.6.</span> <span class="nav-text">注意</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#数组指针和指针数组的定义特别相似"><span class="nav-number">1.0.6.1.</span> <span class="nav-text">数组指针和指针数组的定义特别相似.</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#不要对数组和指针使用sizeof"><span class="nav-number">1.0.6.2.</span> <span class="nav-text">不要对数组和指针使用sizeof.</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#小测验"><span class="nav-number">1.0.7.</span> <span class="nav-text">小测验</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#鸣谢"><span class="nav-number">1.0.8.</span> <span class="nav-text">鸣谢:</span></a></li></ol></li></ol></li></ol></div>
+      </div>
+      <!--/noindex-->
+
+      <div class="site-overview-wrap sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+    <img class="site-author-image" itemprop="image" alt="Leo"
+      src="/medias/leo@8x.png">
+  <p class="site-author-name" itemprop="name">Leo</p>
+  <div class="site-description" itemprop="description">Yet another blog</div>
+</div>
+<div class="site-state-wrap motion-element">
+  <nav class="site-state">
+      <div class="site-state-item site-state-posts">
+          <a href="/archives/">
+        
+          <span class="site-state-item-count">39</span>
+          <span class="site-state-item-name">日志</span>
+        </a>
+      </div>
+      <div class="site-state-item site-state-categories">
+            <a href="/categories/">
+          
+        <span class="site-state-item-count">2</span>
+        <span class="site-state-item-name">分类</span></a>
+      </div>
+      <div class="site-state-item site-state-tags">
+            <a href="/tags/">
+          
+        <span class="site-state-item-count">32</span>
+        <span class="site-state-item-name">标签</span></a>
+      </div>
+  </nav>
+</div>
+  <div class="links-of-author motion-element">
+      <span class="links-of-author-item">
+        <a href="https://github.com/leoleoasd" title="GitHub → https:&#x2F;&#x2F;github.com&#x2F;leoleoasd" rel="noopener" target="_blank"><i class="fa fa-fw fa-github"></i>GitHub</a>
+      </span>
+      <span class="links-of-author-item">
+        <a href="mailto:i@leoleoasd.me" title="E-Mail → mailto:i@leoleoasd.me"><i class="fa fa-fw fa-envelope"></i>E-Mail</a>
+      </span>
+  </div>
+  <div class="cc-license motion-element" itemprop="license">
+    <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" rel="noopener" target="_blank"><img src="/images/cc-by-nc-sa.svg" alt="Creative Commons"></a>
+  </div>
+
+
+  <div class="links-of-blogroll motion-element">
+    <div class="links-of-blogroll-title">
+      <i class="fa fa-fw fa-link"></i>
+      友情链接
+    </div>
+    <ul class="links-of-blogroll-list">
+        <li class="links-of-blogroll-item">
+          <a href="https://www.renjikai.com/" title="https:&#x2F;&#x2F;www.renjikai.com" rel="noopener" target="_blank">杰克部落</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://www.wevg.org/" title="https:&#x2F;&#x2F;www.wevg.org" rel="noopener" target="_blank">Vigorous Pro</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://blog.piggy.moe/" title="https:&#x2F;&#x2F;blog.piggy.moe" rel="noopener" target="_blank">Piggy</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://blog.valderfield.com/" title="https:&#x2F;&#x2F;blog.valderfield.com&#x2F;" rel="noopener" target="_blank">Colin</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://blog.skk.moe/" title="https:&#x2F;&#x2F;blog.skk.moe&#x2F;" rel="noopener" target="_blank">苏卡卡的有底洞</a>
+        </li>
+        <li class="links-of-blogroll-item">
+          <a href="https://qaq.cat/" title="https:&#x2F;&#x2F;qaq.cat&#x2F;" rel="noopener" target="_blank">Balthild’s Blog</a>
+        </li>
+    </ul>
+  </div>
+
+      </div>
+
+    </div>
+  </aside>
+  <div id="sidebar-dimmer"></div>
+
+
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="footer-inner">
+        
+
+<div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2021</span>
+  <span class="with-love">
+    <i class="fa fa-user"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">Leo</span>
+</div>
+  <div class="powered-by">由 <a href="https://hexo.io/" class="theme-link" rel="noopener" target="_blank">Hexo</a> 强力驱动 v4.2.1
+  </div>
+  <span class="post-meta-divider">|</span>
+  <div class="theme-info">主题 – <a href="https://muse.theme-next.org/" class="theme-link" rel="noopener" target="_blank">NexT.Muse</a> v7.7.1
+  </div>
+
+        
+
+
+
+
+
+
+
+
+      </div>
+    </footer>
+  </div>
+
+  
+  <script src="/lib/anime.min.js"></script>
+  <script src="/lib/pjax/pjax.min.js"></script>
+  <script src="/lib/velocity/velocity.min.js"></script>
+  <script src="/lib/velocity/velocity.ui.min.js"></script>
+
+<script src="/js/utils.js"></script>
+
+<script src="/js/motion.js"></script>
+
+
+<script src="/js/schemes/muse.js"></script>
+
+
+<script src="/js/next-boot.js"></script>
+
+  <script>
+var pjax = new Pjax({
+  selectors: [
+    'head title',
+    '#page-configurations',
+    '.content-wrap',
+    '.post-toc-wrap',
+    '#pjax'
+  ],
+  switches: {
+    '.post-toc-wrap': Pjax.switches.innerHTML
+  },
+  analytics: false,
+  cacheBust: false,
+  scrollTo : !CONFIG.bookmark.enable
+});
+
+window.addEventListener('pjax:success', () => {
+  document.querySelectorAll('script[pjax], script#page-configurations, #pjax script').forEach(element => {
+    var code = element.text || element.textContent || element.innerHTML || '';
+    var parent = element.parentNode;
+    parent.removeChild(element);
+    var script = document.createElement('script');
+    if (element.id) {
+      script.id = element.id;
+    }
+    if (element.className) {
+      script.className = element.className;
+    }
+    if (element.type) {
+      script.type = element.type;
+    }
+    if (element.src) {
+      script.src = element.src;
+      // Force synchronous loading of peripheral JS.
+      script.async = false;
+    }
+    if (element.getAttribute('pjax') !== null) {
+      script.setAttribute('pjax', '');
+    }
+    if (code !== '') {
+      script.appendChild(document.createTextNode(code));
+    }
+    parent.appendChild(script);
+  });
+  NexT.boot.refresh();
+  // Define Motion Sequence & Bootstrap Motion.
+  if (CONFIG.motion.enable) {
+    NexT.motion.integrator
+      .init()
+      .add(NexT.motion.middleWares.subMenu)
+      .add(NexT.motion.middleWares.postList)
+      .bootstrap();
+  }
+  NexT.utils.updateSidebarPosition();
+});
+</script>
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <div id="pjax">
+  
+
+  
+
+
+  <script>
+    const heti = new Heti('.heti');
+    heti.autoSpacing(); // 自动进行中西文混排美化和标点挤压
+  </script>
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.css">
+
+<script>
+NexT.utils.loadComments(document.querySelector('#gitalk-container'), () => {
+  NexT.utils.getScript('//cdn.jsdelivr.net/npm/gitalk@1/dist/gitalk.min.js', () => {
+    var gitalk = new Gitalk({
+      clientID    : '88c392c2c9081f351ae0',
+      clientSecret: '40c7d846bf7e66487a0fc35a4176a522bb723100',
+      repo        : 'blog',
+      owner       : 'leoleoasd',
+      admin       : ['leoleoasd'],
+      id          : 'f5dd2bc4354d15f9b7c014d3158e2717',
+        language: 'zh-CN',
+      distractionFreeMode: true
+    });
+    gitalk.render('gitalk-container');
+  }, window.Gitalk);
+});
+</script>
+
+    </div>
+</body>
+</html>
