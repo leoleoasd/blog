@@ -117,3 +117,8 @@ deploy:
   message:
 
 updated_option: date
+
+feed:
+  enable: true
+  type: atom
+  path: atom.xml
