@@ -44,4 +44,4 @@ RQ: Previous study working on web understanding for LLM focus on managing comple
 {"web_name": "Amazon", "id": "Amazon--4", "ques": "Find the used Nintendo Switch Lite on Amazon then filter by 'Used - Good', tell me the cheapest one that is 'Used - Good'.", "web": "https://www.amazon.com/"}
 ```
 
-40 amazon tasks in total
+40 amazon tasks in total, which is maybe useful?
