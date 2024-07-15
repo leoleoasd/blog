@@ -2,7 +2,7 @@
 title: "论文阅读： Self-Instruct: Aligning Language Model with Self Generated Instructions"
 date: 2023-03-21 14:16:07
 tags:
-  - 论文阅读
+  - Paper Reading
   - NLP
 typora-root-url: ..
 categories: Paper Reading

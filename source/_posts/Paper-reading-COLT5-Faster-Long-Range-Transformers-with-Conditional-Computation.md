@@ -3,7 +3,7 @@ title: >-
   论文阅读： COLT5 + 运算优化真的只对长上下文有效吗？
 date: 2023-03-26 14:53:09
 tags:
-  - 论文阅读
+  - Paper Reading
   - NLP
   - Transformer
 typora-root-url: ..

@@ -9,6 +9,7 @@ categories: Paper Reading
 tags:
   - NLP
   - LLM
+  - Paper Reading
 ---
 
 First blog post in English! Today, let's discuss: `Think before you speak: Training Language Models With Pause`.
