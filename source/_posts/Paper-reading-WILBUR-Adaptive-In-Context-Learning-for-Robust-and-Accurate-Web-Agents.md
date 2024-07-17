@@ -33,4 +33,5 @@ WILBUR, an approach that uses a differentiable ranking model and a novel instruc
 * no structural information in their dom representation: why?
   * ![image-20240715153600849](/medias/Paper-reading-WILBUR-Adaptive-In-Context-Learning-for-Robust-and-Accurate-Web-Agents/image-20240715153600849.png)
 * I would like to first see experiments that verify your hypothesis (models need to learn how to use unseen websites)
+* too similar with RAP and Agent Hospital paper
 

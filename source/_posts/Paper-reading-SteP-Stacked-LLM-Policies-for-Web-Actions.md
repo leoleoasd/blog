@@ -29,5 +29,6 @@ Enable dynamic control where any policy can choose to invoke any other policy
 ## Challenges
 
 * I didn't realize how policies are constructed when reading the introduction and the abstract.
-  * Okay, i see why they are trying to avoid saying that. policies are manually crafted.
-* Then the need for manual crafting policies are a big issue.
+  * Okay, I see why they are trying to avoid saying that. policies are manually crafted.
+* Then the need for manual crafting policies is a big issue.
+
