@@ -18,6 +18,14 @@ A dataset of real tasks on real-world websites, including tasks and user interac
 
 ![image-20240716201230890](/medias/Paper-reading-MIND2WEB-Towards-a-Generalist-Agent-for-the-Web/image-20240716201230890.png)
 
+## Dataset Format
+
+![image-20240717195904846](/medias/Paper-reading-MIND2WEB-Towards-a-Generalist-Agent-for-the-Web/image-20240717195904846.png)
+
+* Action Traces
+  * cleaned html and raw html at each point
+  * repr of action
+
 ## Strength
 
 * Very good project homepage -- https://osu-nlp-group.github.io/Mind2Web/
